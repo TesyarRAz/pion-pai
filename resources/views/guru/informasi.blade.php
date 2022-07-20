@@ -31,13 +31,13 @@
                             </select>
                             <div class="row align-items-center mb-2">
                                 <div class="col-lg-3">
-                                    <input type="date" class="form-control" name="from" value="{{ request('from') }}"  onchange="$('#formFilter').submit()">
+                                    <input type="date" class="form-control mb-1" name="from" value="{{ request('from') }}"  onchange="$('#formFilter').submit()">
                                 </div>
                                 <div class="col-lg-3">
                                     <input type="date" class="form-control" name="to" value="{{ request('to') }}"  onchange="$('#formFilter').submit()">
                                 </div>
                                 <div class="col">
-                                    <input class="btn btn-outline-primary" type="submit" name="type" value="Download"/>
+                                    <input class="btn btn-outline-primary mt-1" type="submit" name="type" value="Download"/>
                                 </div>
                             </div>
                         </form>
