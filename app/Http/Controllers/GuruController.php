@@ -42,7 +42,7 @@ class GuruController extends Controller
     public function guru(Request $request)
     {
         if ($request->missing('from', 'to')) {
-            return redirect()->route('guru.informasi', [
+            return redirect()->route('guru.guru', [
                 'from' => now()->format('Y-m-d'),
                 'to' => today()->format('Y-m-d')
             ]);
