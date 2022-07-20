@@ -36,7 +36,9 @@
                                 <div class="col-lg-3">
                                     <input type="date" class="form-control" name="to" value="{{ request('to') }}"  onchange="$('#formFilter').submit()">
                                 </div>
-                                <input class="btn btn-outline-primary" type="submit" name="type" value="Download"/>
+                                <div class="col">
+                                    <input class="btn btn-outline-primary" type="submit" name="type" value="Download"/>
+                                </div>
                             </div>
                         </form>
                         <table id="myTable" class="table" style="width:100%">
