@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class OsisController extends Controller
 {
-    public function homeOsis()
+    public function homeOsis(Request $request)
     {
         $cat_kesalahan = cat_kesalahan::whereDate('tanggal', now())->get();
-        $siswa = user::where('role', 'siswa')->get();
+        $siswa = user::where('role', 'siswa');
+
+        if ($request->filled('kelas'))
+        {
+            $siswa->where('kelas', $request->kelas);
+        }
+
+        $siswa = $siswa->get();
 
         return view('osis.homeOsis', compact('cat_kesalahan', 'siswa'));
     }
