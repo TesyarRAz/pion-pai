@@ -20,7 +20,7 @@
         rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/sb-admin/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="{{ asset('img/perum.png') }}" rel="icon" type="image/png">
@@ -32,7 +32,6 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
     <script src="{{ asset('vendor/DataTables-1.12.1/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/DataTables-1.12.1/js/dataTables.dataTables.min.js') }}"></script>
@@ -205,6 +204,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('vendor/sb-admin/sb-admin-2.min.js') }}"></script>
 </body>
 
 </html>

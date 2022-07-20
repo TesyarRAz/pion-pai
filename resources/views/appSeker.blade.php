@@ -20,7 +20,7 @@
         rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/sb-admin/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="{{ asset('img/perum.png') }}" rel="icon" type="image/png">
@@ -206,6 +206,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('vendor/sb-admin/sb-admin-2.min.js') }}"></script>
 </body>
 
 </html>

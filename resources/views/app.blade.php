@@ -18,10 +18,16 @@
         rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/sb-admin/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="{{ asset('img/perum.png') }}" rel="icon" type="image/png">
+
+    <style type="text/css">
+        .bg-login-image {
+            background-image: url({{ asset('img/cover-login.png') }})
+        }
+    </style>
 </head>
 
 <body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
