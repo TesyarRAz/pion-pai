@@ -33,6 +33,7 @@
                                     <th>No</th>
                                     <th>Tanggal</th>
                                     <th>Kesalahan</th>
+                                    <th>Keterangan</th>
                                     <th>Point</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -43,6 +44,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->kesalahan }}</td>
+                                        <td>{{ $item->keterangan }}</td>
                                         <td>{{ $item->point }}</td>
                                         <td>
                                             <a href="{{ route('osis.hapuscatatan', $item->id) }}" class="btn btn-outline-danger">Hapus</a>
