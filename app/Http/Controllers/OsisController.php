@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\cat_kesalahan;
 use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class OsisController extends Controller
 {
     public function homeOsis(Request $request)
     {
-        $cat_kesalahan = cat_kesalahan::whereDate('tanggal', now())->get();
-        $siswa = user::where('role', 'siswa');
+        $siswa = user::where('role', 'siswa')->with([
+            'active_cat_kesalahan' => fn($query) => $query->whereDate('tanggal', now())
+        ]);
 
         if ($request->filled('kelas'))
         {
@@ -21,7 +23,7 @@ class OsisController extends Controller
         $siswa = $siswa->get();
         $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
 
-        return view('osis.homeOsis', compact('cat_kesalahan', 'siswa', 'kelas'));
+        return view('osis.homeOsis', compact('siswa', 'kelas'));
     }
 
     public function postcatatan(Request $request)
@@ -35,7 +37,10 @@ class OsisController extends Controller
 
         $data['tanggal'] = now();
 
-        cat_kesalahan::create($data);
+        cat_kesalahan::updateOrCreate(
+            Arr::only($data, ['user_id', 'tanggal']),
+            Arr::only($data, ['kesalahan', 'keterangan', 'point'])
+        );
 
         return redirect()->route('osis.homeOsis')->with('status', 'Berhasil post catatan');
     }

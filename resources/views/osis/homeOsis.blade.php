@@ -20,6 +20,8 @@
     <form id="catatanModal" class="modal fade" tabindex="-1" action="{{ route('osis.postcatatan') }}" method="POST">
         @csrf
 
+        <input type="hidden" name="user_id" class="user_id" id="catatanUserId">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -29,14 +31,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="siswa">Siswa</label>
-                        <select name="user_id" id="siswa" class="form-control" required>
-                            @foreach ($siswa as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label for="kesalahan">Kesalahan</label>
                         <input type="text" name="kesalahan" id="kesalahan" class="form-control" required>
@@ -93,16 +87,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cat_kesalahan as $item)
+                                @foreach ($siswa as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user->nis }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td>{{ $item->user->kelas }}</td>
-                                        <td>{{ $item->kesalahan }}</td>
-                                        <td>{{ $item->point }}</td>
+                                        <td>{{ $item->nis }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->kelas }}</td>
+                                        <td>{{ $item->active_cat_kesalahan->kesalahan }}</td>
+                                        <td>{{ $item->active_cat_kesalahan->point }}</td>
                                         <td>
-                                            <a href="{{ route('osis.hapuscatatan', $item->id) }}" class="btn btn-outline-danger">Hapus</a>
+                                            <button type="button" class="btn btn-outline-success" onclick="showModalCatatan('{{ $item->id }}')">Kesalahan</button>
+                                            <a href="{{ route('osis.hapuscatatan', $item->active_cat_kesalahan->id) }}" class="btn btn-outline-danger">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -114,9 +109,21 @@
         </div>
     </div>
     <script type="text/javascript">
+        const data = @json($siswa);
+
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+
+        function showModalCatatan(id) {
+            const item = data.filter((item) => item.id == id)[0]
+
+            $("#catatanUserId").val(id);
+            $("#kesalahan").val(item?.active_cat_kesalahan?.kesalahan);
+            $("#keterangan").val(item?.active_cat_kesalahan?.keterangan);
+            $("#point").val(item?.active_cat_kesalahan?.point);
+            $("#catatanModal").modal();
+        }
     
     </script>
 @endsection

@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(cat_kesalahan::class);
     }
+
+    public function active_cat_kesalahan()
+    {
+        return $this->hasOne(cat_kesalahan::class);
+    }
 }
