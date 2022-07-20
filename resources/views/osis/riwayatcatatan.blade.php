@@ -43,7 +43,7 @@
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
-                                    <th>Point</th>
+                                    <th>Total Point</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
