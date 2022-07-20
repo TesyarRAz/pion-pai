@@ -41,6 +41,11 @@
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
+    <script type="text/javascript">
+        $.extend($.fn.dataTable.defaults, {
+            scrollX: true,
+        });
+    </script>
 </head>
 
 <body>

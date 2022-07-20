@@ -23,13 +23,13 @@
                 <div class="card-body">
                     <div class="">
                         <form action="{{ route('user.informasi') }}" class="row align-items-center mb-4">
-                            <div class="col-3">
+                            <div class="col-lg-3">
                                 <input type="date" class="form-control" name="from" value="{{ request('from') }}" required>
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3">
                                 <input type="date" class="form-control" name="to" value="{{ request('to') }}" required>
                             </div>
-                            <div class="col-2">
+                            <div class="col-lg-2">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-fw fa-search"></i>
                                 </button>
