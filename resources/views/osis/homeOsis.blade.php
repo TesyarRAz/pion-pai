@@ -69,7 +69,7 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <button type="button" data-toggle="modal" data-target="#catatanModal" class="btn btn-outline-success mb-3">Tambah</button>
+                        <button type="button" data-toggle="modal" data-target="#catatanModal" class="btn btn-outline-success mb-3">Kesalahan</button>
 
                         <form action="{{ route('osis.homeOsis') }}" id="formFilter" class="mb-2" method="GET">
                             <select name="kelas" class="form-control mb-2" onchange="$('#formFilter').submit()">
