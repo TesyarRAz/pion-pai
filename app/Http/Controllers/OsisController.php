@@ -56,7 +56,7 @@ class OsisController extends Controller
         }
 
         $siswa = $siswa->get();
-        $kelas = user::where('role', 'siswa')->distinct('kelas')->pluck('kelas');
+        $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
 
         return view('osis.riwayatcatatan', compact('siswa', 'kelas'));
     }
