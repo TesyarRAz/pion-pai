@@ -19,8 +19,9 @@ class OsisController extends Controller
         }
 
         $siswa = $siswa->get();
+        $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
 
-        return view('osis.homeOsis', compact('cat_kesalahan', 'siswa'));
+        return view('osis.homeOsis', compact('cat_kesalahan', 'siswa', 'kelas'));
     }
 
     public function postcatatan(Request $request)
