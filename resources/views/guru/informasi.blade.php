@@ -57,7 +57,7 @@
                                 @foreach ($inf_guru as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->mapel->nama }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->kelas }}</td>
