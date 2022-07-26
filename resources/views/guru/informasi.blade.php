@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Informasi Tugas Dari Guru') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Pemberitahuan Guru tidak hadir') }}</h1>
 
     @if (session('status'))
         <div class="alert alert-success border-left-success" role="alert">
@@ -18,7 +18,7 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Tugas</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Daftar Guru</h6>
                 </div>
                 <div class="card-body">
                     <div class="">
