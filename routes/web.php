@@ -17,7 +17,7 @@ Route::get('/', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin')->name('postLogin');
 
 Route::middleware('auth')->group(function () {
-    Route::prefix('user')->group(function () {
+    Route::middleware('can:role_user')->prefix('user')->group(function () {
         Route::get('/home', 'UserController@homeSeker')->name('user.homeSeker');
         Route::get('/riwayat', 'UserController@rwAbsensi')->name('user.rwAbsensi');
         Route::get('/informasi', 'UserController@informasi')->name('user.informasi');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/rekap/{user}', 'UserController@rekapabsensi')->name('user.rekapabsensi');
     });
 
-    Route::prefix('guru')->group(function () {
+    Route::middleware('can:role_guru')->prefix('guru')->group(function () {
         Route::get('/homeguru', 'GuruController@homeguru')->name('guru.homeguru');
         Route::get('/guru', 'GuruController@guru')->name('guru.guru');
         Route::get('/tambahguru', 'GuruController@tambahguru')->name('guru.tambahguru');
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/informasi', 'GuruController@informasi')->name('guru.informasi');
     });
 
-    Route::prefix('osis')->group(function () {
+    Route::middleware('can:role_osis')->prefix('osis')->group(function () {
         Route::get('/homeosis', 'OsisController@homeOsis')->name('osis.homeOsis');
         Route::post('/postcatatan', 'OsisController@postcatatan')->name('osis.postcatatan');
         Route::get('/hapuscatatan/{cat_kesalahan}', 'OsisController@hapuscatatan')->name('osis.hapuscatatan');
@@ -48,16 +48,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekapcatatan/{user}', 'OsisController@rekapcatatan')->name('osis.rekapcatatan');
     });
 
+    Route::middleware('can:role_admin')->prefix('admin')->group(function () {
+        Route::get('/member', 'AdminController@member')->name('admin.member');
+        Route::get('/tambah', 'AdminController@tambah')->name('admin.tambah');
+        Route::post('/posttambah', 'AdminController@posttambah')->name('admin.posttambah');
+        Route::get('/edit/{user}', 'AdminController@edit')->name('admin.edit');
+        Route::post('/postedit/{user}', 'AdminController@postedit')->name('admin.postedit');
+        Route::get('/hapus/{user}', 'AdminController@hapus')->name('admin.hapus');
+        Route::get('/absensi', 'AdminController@absensi')->name('admin.absensi');
+        Route::post('/importsiswa', 'AdminController@importsiswa')->name('admin.importsiswa');
 
-    Route::get('/member', 'AdminController@member')->name('admin.member');
-    Route::get('/tambah', 'AdminController@tambah')->name('admin.tambah');
-    Route::post('/posttambah', 'AdminController@posttambah')->name('admin.posttambah');
-    Route::get('/edit/{user}', 'AdminController@edit')->name('admin.edit');
-    Route::post('/postedit/{user}', 'AdminController@postedit')->name('admin.postedit');
-    Route::get('/hapus/{user}', 'AdminController@hapus')->name('admin.hapus');
-    Route::get('/absensi', 'AdminController@absensi')->name('admin.absensi');
-
-
+        Route::get('/mapel', 'MapelController@index')->name('admin.mapel.index');
+        Route::get('/mapel/tambah', 'MapelController@create')->name('admin.mapel.create');
+        Route::post('/mapel/store', 'MapelController@store')->name('admin.mapel.store');
+        Route::get('/mapel/edit/{mapel}', 'MapelController@edit')->name('admin.mapel.edit');
+        Route::post('/mapel/update/{mapel}', 'MapelController@update')->name('admin.mapel.update');
+        Route::get('/mapel/hapus/{mapel}', 'MapelController@destroy')->name('admin.mapel.destroy');
+        Route::post('/mapel/import', 'MapelController@import')->name('admin.mapel.import');
+    });
 
     Route::get('logout', 'AuthController@logout')->name('logout');
 });

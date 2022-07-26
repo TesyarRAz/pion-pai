@@ -5,6 +5,7 @@ use App\Models\user;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -67,5 +68,71 @@ class AdminController extends Controller
     public function harga()
     {
         return view('admin.harga', compact('setharga'));
+    }
+
+    public function importsiswa(Request $request)
+    {
+        $request->validate([
+            'delimiter' => 'required',
+            'berkas' => 'required|file|mimes:csv,txt'
+        ]);
+
+        $data = $request->berkas->get();
+
+        $rows = explode(PHP_EOL, trim($data));
+
+        $result = [];
+
+        foreach ($rows as $row)
+        {
+            if (empty(trim($row))) continue;
+            $cells = explode($request->delimiter, trim($row));
+
+            if (count($cells) < 3)
+            {
+                return back()->with('status', 'Cell CSV minimal 3, untuk nama, nis, dan kelas');
+            }
+
+            // Filter Jika Rows Kosong, Bisa diskip
+            $empty_cells = false;
+            for ($i=0; $i<3; $i++)
+            {
+                if (empty($cells[$i]))
+                {
+                    $empty_cells = true;
+                }
+            }
+
+            if ($empty_cells) continue;
+            // end
+
+            $result[] = [
+                'name' => trim($cells[0]),
+                'nis' => trim($cells[1]),
+                'kelas' => trim($cells[2]),
+                'opsional' => [
+                    'alamat' => isset($cells[3]) && !empty($cells[3]) ? $cells[3] : null,
+                ],
+                'username' => \Str::random(8),
+                'password' => \Str::random(8)
+            ];
+        }
+
+        DB::transaction(function() use ($result) {
+            foreach ($result as $d)
+            {
+                User::create([
+                    'name' => $d['name'],
+                    'alamat' => $d['opsional']['alamat'] ?? '',
+                    'role' => 'siswa',
+                    'kelas' => $d['kelas'],
+                    'nis' => $d['nis'],
+                    'username' => $d['username'],
+                    'password' => bcrypt($d['password']),
+                ]);
+            }
+        });
+
+        return back()->with('status', 'Berhasil import siswa');
     }
 }

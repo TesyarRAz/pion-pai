@@ -81,6 +81,13 @@
                 {{ __('Settings') }}
             </div>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.mapel.index') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{{ __('Kelola Mapel') }}</span>
+                </a>
+            </li>
+
             <!-- Nav Item - Profile -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.absensi') }}">
@@ -90,12 +97,12 @@
             </li>
 
             <!-- Nav Item - About -->
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
                 <a class="nav-link" href="">
                     <i class="fas fa-dollar-sign"></i>
                     <span>{{ __('Riwayat Absensi') }}</span>
                 </a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

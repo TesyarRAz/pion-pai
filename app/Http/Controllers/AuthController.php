@@ -32,6 +32,7 @@ class AuthController extends Controller
                 return redirect()->route('osis.homeOsis')->with('status', 'Selamat datang : '.$user->name);
             }
 
+            auth()->logout();
         }
         return back()->with('status', 'Email atau password salah');
     }
