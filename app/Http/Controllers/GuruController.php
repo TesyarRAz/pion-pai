@@ -110,6 +110,13 @@ class GuruController extends Controller
         return redirect()->route('guru.guru')->with('status', 'Berhasil tambah Informasi Pembelajaran');
     }
 
+    public function hapusguru(inf_tugas $inf_tugas)
+    {
+        $inf_tugas->delete();
+
+        return redirect()->route('guru.guru')->with('status', 'Berhasil hapus Informasi Pembelajaran');
+    }
+
     public function informasi(Request $request)
     {
         if ($request->missing('from', 'to')) {

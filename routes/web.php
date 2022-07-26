@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/guru', 'GuruController@guru')->name('guru.guru');
         Route::get('/tambahguru', 'GuruController@tambahguru')->name('guru.tambahguru');
         Route::post('/posttambahguru', 'GuruController@posttambahguru')->name('guru.posttambahguru');
+        Route::get('/hapusguru/{inf_tugas}', 'GuruController@hapusguru')->name('guru.hapusguru');
         Route::get('/informasi', 'GuruController@informasi')->name('guru.informasi');
     });
 

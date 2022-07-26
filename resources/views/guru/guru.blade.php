@@ -54,6 +54,7 @@
                                     <th>Tanggal</th>
                                     <th>Kelas</th>
                                     <th>Keterangan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,6 +66,10 @@
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->keterangan }}</td>
+                                    <td>
+                                        <a href="{{ route('guru.hapusguru',$item->id) }}" class="btn btn-outline-danger"
+                                            onclick="return confirm('Yakin ingin hapus')">Hapus</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
