@@ -112,9 +112,10 @@ class AdminController extends Controller
                 'kelas' => trim($cells[2]),
                 'opsional' => [
                     'alamat' => isset($cells[3]) && !empty($cells[3]) ? $cells[3] : null,
+                    'role' => isset($cells[4]) && !empty($cells[4]) ? $cells[4] : null,
+                    'username' => isset($cells[5]) && !empty($cells[5]) ? $cells[5] : null,
+                    'password' => isset($cells[6]) && !empty($cells[6]) ? $cells[6] : null,
                 ],
-                'username' => \Str::random(8),
-                'password' => \Str::random(8)
             ];
         }
 
@@ -124,11 +125,11 @@ class AdminController extends Controller
                 User::create([
                     'name' => $d['name'],
                     'alamat' => $d['opsional']['alamat'] ?? '',
-                    'role' => 'siswa',
+                    'role' => in_array($d['opsional']['role'], ['siswa', 'sekertaris', 'guru']) ? $d['opsional']['role'] : 'siswa',
                     'kelas' => $d['kelas'],
                     'nis' => $d['nis'],
-                    'username' => $d['username'],
-                    'password' => bcrypt($d['password']),
+                    'username' => $d['opsional']['username'] ?? '',
+                    'password' => $d['opsional']['password'] ?? '',
                 ]);
             }
         });

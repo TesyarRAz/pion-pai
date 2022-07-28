@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label>Berkas CSV</label>
                         <input type="file" name="berkas" class="form-control-file" accept=".csv" required>
-                        <span>Format : <br>(Nama Siswa, NIS Siswa, Kelas, Alamat&lt;Opsional&gt;) 3 Column, 1 Opsional</span>
+                        <span>Format : <br>(Nama Siswa, NIS Siswa, Kelas, Alamat&lt;Opsional&gt;, Role&lt;Opsional&gt;, Password&lt;Opsional&gt;, Password&lt;Opsional&gt;) 3 Column, 3 Opsional</span>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -69,6 +69,7 @@
                                     <th>Nama</th>
                                     <th>Kelas</th>
                                     <th>Alamat</th>
+                                    <th>Username</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -80,6 +81,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->username }}</td>
                                     <td>
                                         <a href="{{ route('admin.edit',$item->id) }}" class="btn btn-outline-primary">Edit</a>
                                         <a href="{{ route('admin.hapus',$item->id) }}" class="btn btn-outline-danger"
