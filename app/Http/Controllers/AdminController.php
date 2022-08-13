@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\inf_guru;
+use App\Models\Mapel;
 use App\Models\user;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -136,4 +141,81 @@ class AdminController extends Controller
 
         return back()->with('status', 'Berhasil import siswa');
     }
+    
+    public function informasi(Request $request)
+    {
+        if ($request->missing('from', 'to')) {
+            return redirect()->route('admin.informasi.index', [
+                'from' => now()->format('Y-m-d'),
+                'to' => today()->format('Y-m-d')
+            ]);
+        }
+
+        $inf_guru = inf_guru::with('mapel');
+
+        if ($request->has(['from', 'to'])) {
+            $inf_guru->whereBetween('tanggal', [$request->from, $request->to]);
+        }
+
+        if ($request->filled('kelas')) {
+            $inf_guru->where('kelas', $request->kelas);
+        }
+
+        $inf_guru = $inf_guru->get();
+        $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
+
+        if ($request->type == 'Download') {
+            return Excel::download(new class($inf_guru) implements FromArray
+            {
+                function __construct($inf_guru)
+                {
+                    $this->inf_guru = $inf_guru;
+                }
+
+                public function array(): array
+                {
+                    return [
+                        ['Nama Guru', 'Mapel', 'Tanggal', 'Kelas', 'JP', 'Keterangan'],
+                        ...($this->inf_guru->map(fn ($e) => [
+                            $e->user->name,
+                            $e->mapel->nama,
+                            $e->tanggal,
+                            $e->kelas,
+                            $e->jp,
+                            $e->keterangan,
+                        ])->toArray())
+                    ];
+                }
+            }, 'rekap-guru-' . $request->from . '-' . $request->to . '-' . '-kelas-' . ($request->kelas ?? 'all') . '-.xlsx');
+        }
+
+        return view('admin.informasi', compact('inf_guru', 'kelas'));
+    }
+
+    public function destroyinformasi(inf_guru $inf_guru)
+    {
+        $inf_guru->delete();
+        return redirect()->route('admin.informasi.index')->with('status', 'Berhasil hapus data');
+    }
+
+    public function editinformasi(Request $request, inf_guru $inf_guru)
+    {
+        $mapel = Mapel::all();
+
+        return view('admin.informasiedit', compact('mapel', 'inf_guru'));
+    }
+
+    public function updateinformasi(Request $request, inf_guru $inf_guru)
+    {
+        $data = $request->validate([
+            'name'=>'required',
+            'mapel_id'=>'required',
+            'keterangan'=>'required',
+            'jp'=>'required',
+        ]);
+        $data['tanggal'] = now();
+        $inf_guru->update($data);
+        return redirect()->route('admin.informasi.index')->with('status', 'Berhasil edit Informasi Pembelajaran');
+    }
+
 }

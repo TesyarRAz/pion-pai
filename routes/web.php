@@ -65,6 +65,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/mapel/update/{mapel}', 'MapelController@update')->name('admin.mapel.update');
         Route::get('/mapel/hapus/{mapel}', 'MapelController@destroy')->name('admin.mapel.destroy');
         Route::post('/mapel/import', 'MapelController@import')->name('admin.mapel.import');
+
+        Route::get('/informasi', 'AdminController@informasi')->name('admin.informasi.index');
+        Route::get('/informasi/{inf_guru}/hapus', 'AdminController@destroyinformasi')->name('admin.informasi.destroy');
+        Route::post('/informasi/{inf_guru}/update', 'AdminController@updateinformasi')->name('admin.informasi.update');
+        Route::get('/informasi/{inf_guru}/edit', 'AdminController@editinformasi')->name('admin.informasi.edit');
     });
 
     Route::get('logout', 'AuthController@logout')->name('logout');

@@ -82,6 +82,13 @@
             </div>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.informasi.index') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{{ __('Kelola Informasi Guru') }}</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.mapel.index') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Mapel') }}</span>

@@ -112,6 +112,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         inf_tugas::create([
+            'name' => 'Yatno',
             'user_id' => '2',
             'tanggal' => now(),
             'keterangan' => 'silahkan kerjakan Tugas 3 di SL',
@@ -119,6 +120,7 @@ class DatabaseSeeder extends Seeder
             'mapel_id' => $mapel_basdat->id,
         ]);
         inf_tugas::create([
+            'name' => 'Yatno',
             'user_id' => '2',
             'tanggal' => now(),
             'keterangan' => 'HTML Dasar',
@@ -126,6 +128,7 @@ class DatabaseSeeder extends Seeder
             'mapel_id' => $mapel_web->id,
         ]);
         inf_tugas::create([
+            'name' => 'Yatno',
             'user_id' => '3',
             'tanggal' => now(),
             'keterangan' => 'silahkan ',
@@ -133,6 +136,7 @@ class DatabaseSeeder extends Seeder
             'mapel_id' => $mapel_pemdas->id,
         ]);
         inf_tugas::create([
+            'name' => 'Yatno',
             'user_id' => '3',
             'tanggal' => now(),
             'keterangan' => 'HTML Dasar',
