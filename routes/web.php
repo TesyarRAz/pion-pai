@@ -17,7 +17,7 @@ Route::get('/', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin')->name('postLogin');
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('can:role_user')->prefix('user')->group(function () {
+    Route::middleware('can:role_sekertaris')->prefix('user')->group(function () {
         Route::get('/home', 'UserController@homeSeker')->name('user.homeSeker');
         Route::get('/riwayat', 'UserController@rwAbsensi')->name('user.rwAbsensi');
         Route::get('/informasi', 'UserController@informasi')->name('user.informasi');
