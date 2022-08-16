@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inf_guru;
+use App\Models\inf_tugas;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,6 +94,7 @@ class MapelController extends Controller
     public function destroy(Mapel $mapel)
     {
         inf_guru::where('mapel_id', $mapel->id)->delete();
+        inf_tugas::where('mapel_id', $mapel->id)->delete();
         $mapel->delete();
         return redirect()->route('admin.mapel.index')->with('status', 'Berhasil hapus data');
     }
