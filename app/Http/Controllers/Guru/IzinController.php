@@ -23,13 +23,20 @@ class IzinController extends Controller
             ]);
         }
 
-        $data = Izin::when($request->filled('tanggal'), fn($query) => $query
+        $data = Izin::query()
+        ->when($request->filled('tanggal'), fn($query) => $query
             ->where('tanggal', $request->tanggal)
-        )->get();
+        )
+        ->when($request->filled('kelas'), fn($query) => $query
+            ->join('users', 'users.id', 'izins.user_id')
+            ->where('users.kelas', $request->kelas)
+        )
+        ->get();
 
         $siswas = User::where('role', 'siswa')->get();
+        $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
 
-        return view('guru.izin.index', compact('data', 'siswas'));
+        return view('guru.izin.index', compact('data', 'siswas', 'kelas'));
     }
 
     /**

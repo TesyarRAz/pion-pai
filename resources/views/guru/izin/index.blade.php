@@ -68,6 +68,12 @@
                     <div class="">
                         <div class="form-group">
                             <form class="" action="{{ route('guru.izin.index') }}" id="formFilter" method="get">
+                                <select name="kelas" class="form-control mb-2" onchange="$('#formFilter').submit()">
+                                    <option value="">Silahkan Pilih Kelas</option>
+                                    @foreach ($kelas as $e)
+                                        <option value="{{ $e }}" {{ request('kelas') == $e ? 'selected' : '' }}>{{ $e }}</option>
+                                    @endforeach
+                                </select>
                                 <div class="d-flex align-items-center">
                                     <input type="date" name="tanggal" class="form-control col-lg-3" value="{{ request('tanggal') }}" onchange="$('#formFilter').submit()" required>
                                 </div>
