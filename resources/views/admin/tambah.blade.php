@@ -27,7 +27,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Username</label>
-                                    <input type="text"  class="form-control" placeholder="contoh@gmail.com" name="username" required>
+                                    <input type="text"  class="form-control" name="username" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Password</label>
@@ -38,7 +38,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label>NIS</label>
-                                    <input type="number" name="nis" class="form-control" required>
+                                    <input type="text" name="nis" class="form-control">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Nama</label>
@@ -46,11 +46,19 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Kelas</label>
-                                    <input type="text" name="kelas" class="form-control"  placeholder="Jl. Proklamasi..." required>
+                                    <input type="text" name="kelas" class="form-control">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" class="form-control"  placeholder="Jl. Proklamasi..." required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Role</label>
+                                    <select name="role" class="form-control">
+                                        @foreach (['admin','sekertaris','osis','siswa','guru'] as $role)
+                                            <option value="{{ $role }}">{{ strtoupper($role) }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 

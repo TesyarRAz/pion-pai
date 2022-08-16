@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inf_guru;
+use App\Models\inf_tugas;
 use App\Models\Mapel;
 use App\Models\user;
 use Illuminate\Support\Facades\Auth;
@@ -28,13 +29,12 @@ class AdminController extends Controller
         $data = $request->validate([
             'username'=>'required',
             'password'=>'required',
-            'nis'=>'required',
+            'nis'=>'bail',
             'name'=>'required',
-            'kelas'=>'required',
+            'kelas'=>'bail',
             'alamat'=>'required',
         ]);
         $data['password'] = bcrypt($request->password);
-        $data['role'] = 'customer';
         user::create($data);
         return redirect()->route('admin.member')->with('status', 'Berhasil tambah data');
 
@@ -48,20 +48,25 @@ class AdminController extends Controller
         $data = $request->validate([
             'username'=>'required',
             'password'=>'required',
-            'nis'=>'required',
+            'nis'=>'bail',
             'name'=>'required',
-            'kelas'=>'required',
+            'kelas'=>'bail',
             'alamat'=>'required',
         ]);
         $data['password'] = bcrypt($request->password);
-        $data['role'] = 'customer';
+        
         $user->update($data);
+
         return redirect()->route('admin.member')->with('status', 'Berhasil merubah data');
 
     }
     public function hapus(user $user)
     {
+        inf_guru::where('user_id', $user->id)->delete();
+        inf_tugas::where('user_id', $user->id)->delete();
+        
         $user->delete();
+
         return redirect()->route('admin.member')->with('status', 'Berhasil hapus data');
     }
 

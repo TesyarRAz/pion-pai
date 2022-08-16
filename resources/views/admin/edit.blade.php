@@ -52,6 +52,14 @@
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" class="form-control" value="{{ $user->alamat }}">
                                 </div>
+                                <div class="form-group col-md-4">
+                                    <label>Role</label>
+                                    <select name="role" class="form-control">
+                                        @foreach (['admin','sekertaris','osis','siswa','guru'] as $role)
+                                            <option value="{{ $role }}" @if($user->role == $role) selected @endif>{{ strtoupper($role) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Kirim</button>
