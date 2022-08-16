@@ -58,6 +58,10 @@ class AdminController extends Controller
         {
             $data['password'] = bcrypt($request->password);
         }
+        else
+        {
+            unset($data['password']);
+        }
         
         $user->update($data);
 
