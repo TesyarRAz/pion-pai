@@ -47,13 +47,17 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'username'=>'required',
-            'password'=>'required',
+            'password'=>'bail',
             'nis'=>'bail',
             'name'=>'required',
             'kelas'=>'bail',
             'alamat'=>'required',
         ]);
-        $data['password'] = bcrypt($request->password);
+        
+        if (filled($data['password']))
+        {
+            $data['password'] = bcrypt($request->password);
+        }
         
         $user->update($data);
 

@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Password</label>
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                             </div>
 
