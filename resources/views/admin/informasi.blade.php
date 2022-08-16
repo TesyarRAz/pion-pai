@@ -66,7 +66,7 @@
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
                                         <a href="{{ route('admin.informasi.edit', $item->id) }}" class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{ route('admin.informasi.destroy', $item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="{{ route('admin.informasi.destroy', $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach
