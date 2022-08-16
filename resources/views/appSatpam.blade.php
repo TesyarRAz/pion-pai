@@ -68,48 +68,18 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('guru.guru') }}">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>{{ __('Informasi Pembelajaran') }}</span></a>
-            </li>
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('guru.informasi') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>{{ __('Informasi Guru') }}</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                {{ __('Settings') }}
-            </div>
-
-            <!-- Nav Item - Profile -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.homeSeker') }}">
-                    <i class="fas fa-file-alt"></i>
-                    <span>{{ __('Kelola Absensi') }}</span>
-                </a>
-            </li> --}}
+            
 
             <!-- Nav Item - About -->
             <li class="nav-item ">
-                <a class="nav-link" href="{{ route('guru.homeguru') }}">
-                    <i class="fas fa-layer-group"></i>
-                    <span>{{ __('Riwayat Kehadiran') }}</span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('guru.izin.index') }}">
+                <a class="nav-link" href="{{ route('satpam.izin.index') }}">
                     <i class="fas fa-layer-group"></i>
                     <span>{{ __('Daftar Izin') }}</span>
                 </a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

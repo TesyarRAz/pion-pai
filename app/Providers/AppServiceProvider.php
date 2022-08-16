@@ -39,5 +39,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('role_osis', function ($user) {
             return $user->role == 'osis';
         });
+
+        Gate::define('role_satpam', function ($user) {
+            return $user->role == 'satpam';
+        });
     }
 }

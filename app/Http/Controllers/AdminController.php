@@ -6,6 +6,7 @@ use App\Models\absensi;
 use App\Models\cat_kesalahan;
 use App\Models\inf_guru;
 use App\Models\inf_tugas;
+use App\Models\Izin;
 use App\Models\Mapel;
 use App\Models\user;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,11 @@ class AdminController extends Controller
             cat_kesalahan::whereIn('user_id', $users->pluck('id'))->delete();
             inf_guru::whereIn('user_id', $users->pluck('id'))->delete();
             inf_tugas::whereIn('user_id', $users->pluck('id'))->delete();
+            Izin::whereIn('user_id', $users->pluck('id'))->delete();
 
             user::destroy($users->pluck('id'));
+
+            return redirect()->route('admin.member')->with('status', 'Data berhasil direset');
         }
 
         $user = user::whereNotIn('role', ['admin'])->get();

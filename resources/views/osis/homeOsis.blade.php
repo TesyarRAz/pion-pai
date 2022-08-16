@@ -95,9 +95,9 @@
                                         <td>{{ optional($item->active_cat_kesalahan)->point }}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-success" onclick="showModalCatatan('{{ $item->id }}')">Kesalahan</button>
-                                            @if(filled($item->active_cat_kesalahan))
+                                            {{-- @if(filled($item->active_cat_kesalahan))
                                             <a href="{{ route('osis.hapuscatatan', $item->active_cat_kesalahan->id) }}" class="btn btn-outline-danger">Hapus</a>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                     </tr>
                                 @endforeach

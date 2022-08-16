@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guru\IzinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,13 +32,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/rekap/{user}', 'UserController@rekapabsensi')->name('user.rekapabsensi');
     });
 
-    Route::middleware('can:role_guru')->prefix('guru')->group(function () {
-        Route::get('/homeguru', 'GuruController@homeguru')->name('guru.homeguru');
-        Route::get('/guru', 'GuruController@guru')->name('guru.guru');
-        Route::get('/tambahguru', 'GuruController@tambahguru')->name('guru.tambahguru');
-        Route::post('/posttambahguru', 'GuruController@posttambahguru')->name('guru.posttambahguru');
-        Route::get('/hapusguru/{inf_tugas}', 'GuruController@hapusguru')->name('guru.hapusguru');
-        Route::get('/informasi', 'GuruController@informasi')->name('guru.informasi');
+    Route::middleware('can:role_guru')->prefix('guru')->name('guru.')->group(function () {
+        Route::get('/homeguru', 'GuruController@homeguru')->name('homeguru');
+        Route::get('/guru', 'GuruController@guru')->name('guru');
+        Route::get('/tambahguru', 'GuruController@tambahguru')->name('tambahguru');
+        Route::post('/posttambahguru', 'GuruController@posttambahguru')->name('posttambahguru');
+        Route::get('/hapusguru/{inf_tugas}', 'GuruController@hapusguru')->name('hapusguru');
+        Route::get('/informasi', 'GuruController@informasi')->name('informasi');
+
+        Route::namespace('Guru')->group(function() {        
+            Route::get('/izin', 'IzinController@index')->name('izin.index');
+            Route::post('/izin', 'IzinController@store')->name('izin.store');
+            Route::get('/izin/{izin}/delete', 'IzinController@destroy')->name('izin.destroy');
+        });
     });
 
     Route::middleware('can:role_osis')->prefix('osis')->group(function () {
@@ -70,6 +77,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/informasi/{inf_guru}/hapus', 'AdminController@destroyinformasi')->name('admin.informasi.destroy');
         Route::post('/informasi/{inf_guru}/update', 'AdminController@updateinformasi')->name('admin.informasi.update');
         Route::get('/informasi/{inf_guru}/edit', 'AdminController@editinformasi')->name('admin.informasi.edit');
+    });
+
+    Route::middleware('can:role_satpam')->prefix('satpam')->namespace('Satpam')->name('satpam.')->group(function () {
+        Route::get('/izin', 'IzinController@index')->name('izin.index');
     });
 
     Route::get('logout', 'AuthController@logout')->name('logout');
