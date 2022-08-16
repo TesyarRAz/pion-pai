@@ -33,6 +33,7 @@ class AdminController extends Controller
             'name'=>'required',
             'kelas'=>'bail',
             'alamat'=>'required',
+            'role' => 'required',
         ]);
         $data['password'] = bcrypt($request->password);
         user::create($data);
@@ -52,6 +53,7 @@ class AdminController extends Controller
             'name'=>'required',
             'kelas'=>'bail',
             'alamat'=>'required',
+            'role' => 'required',
         ]);
         
         if (filled($data['password']))
