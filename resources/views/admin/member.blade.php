@@ -70,6 +70,7 @@
                                     <th>Kelas</th>
                                     <th>Alamat</th>
                                     <th>Username</th>
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -82,6 +83,7 @@
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->username }}</td>
+                                    <td>{{ $item->role }}</td>
                                     <td>
                                         <a href="{{ route('admin.edit',$item->id) }}" class="btn btn-outline-primary">Edit</a>
                                         <a href="{{ route('admin.hapus',$item->id) }}" class="btn btn-outline-danger"
