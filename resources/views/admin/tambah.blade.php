@@ -55,7 +55,7 @@
                                 <div class="form-group col-md-4">
                                     <label>Role</label>
                                     <select name="role" class="form-control">
-                                        @foreach (['admin','sekertaris','osis','siswa','guru'] as $role)
+                                        @foreach (['sekertaris','osis','siswa','guru'] as $role)
                                             <option value="{{ $role }}">{{ strtoupper($role) }}</option>
                                         @endforeach
                                     </select>

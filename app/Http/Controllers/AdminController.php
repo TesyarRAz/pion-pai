@@ -19,7 +19,7 @@ class AdminController extends Controller
 {
     public function member()
     {
-        $user = user::all();
+        $user = user::whereNotIn('role', ['admin'])->get();
         return view('admin.member', compact('user'));
     }
     public function tambah()
