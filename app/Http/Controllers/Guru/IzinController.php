@@ -33,7 +33,13 @@ class IzinController extends Controller
         )
         ->get();
 
-        $siswas = User::where('role', 'siswa')->get();
+        $siswas = User::query()
+        ->where('role', 'siswa')
+        ->when($request->filled('kelas'), fn($query) => $query
+            ->where('kelas', $request->kelas)
+        )
+        ->get();
+
         $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
 
         return view('guru.izin.index', compact('data', 'siswas', 'kelas'));
