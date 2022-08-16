@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\absensi;
 use App\Models\inf_guru;
 use App\Models\inf_tugas;
 use App\Models\Mapel;
@@ -74,6 +75,7 @@ class AdminController extends Controller
     {
         inf_guru::where('user_id', $user->id)->delete();
         inf_tugas::where('user_id', $user->id)->delete();
+        absensi::where('user_id', $user->id)->delete();
         
         $user->delete();
 
