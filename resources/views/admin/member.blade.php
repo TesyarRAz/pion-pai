@@ -56,6 +56,12 @@
                                 <a href="{{ route('admin.tambah') }}" class="btn btn-outline-success mb-3">Isi Data</a>
                             </div>
                             <div>
+                                <a href="{{ route('admin.member', ['reset' => 'sekertaris']) }}" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                    Reset Sekertaris
+                                </a>
+                                <a href="{{ route('admin.member', ['reset' => 'siswa']) }}" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                    Reset Siswa
+                                </a>
                                 <button type="button" data-target="#modal-import" data-toggle="modal" class="btn btn-outline-primary">
                                     Import
                                 </button>

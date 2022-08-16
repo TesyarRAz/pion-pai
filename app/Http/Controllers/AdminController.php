@@ -19,7 +19,28 @@ class AdminController extends Controller
 {
     public function member()
     {
+        if (request()->has('reset'))
+        {
+            if (request()->reset == 'sekertaris')
+            {
+                $users = user::where('role', 'sekertaris')->get();
+            }
+    
+            if (request()->reset == 'siswa')
+            {
+                $users = user::where('role', 'siswa')->get();
+            }
+    
+            absensi::whereIn('user_id', $users->pluck('id'))->delete();
+            cat_kesalahan::whereIn('user_id', $users->pluck('id'))->delete();
+            inf_guru::whereIn('user_id', $users->pluck('id'))->delete();
+            inf_tugas::whereIn('user_id', $users->pluck('id'))->delete();
+
+            user::destroy($users->pluck('id'));
+        }
+
         $user = user::whereNotIn('role', ['admin'])->get();
+        
         return view('admin.member', compact('user'));
     }
     public function tambah()
