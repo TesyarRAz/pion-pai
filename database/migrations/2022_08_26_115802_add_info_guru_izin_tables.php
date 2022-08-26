@@ -15,7 +15,7 @@ class AddInfoGuruIzinTables extends Migration
     public function up()
     {
         Schema::table('izins', function (Blueprint $table) {
-            $table->foreignIdFor(User::class, "guru_id")->constrained('users');
+            $table->foreignIdFor(User::class, "guru_id")->constrained('users')->nullable();
             $table->string('guru_name');
         });
     }
