@@ -27,13 +27,13 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <form class="" action="{{ route('satpam.izin.index') }}" id="formFilter" method="get">
                                 <div class="d-flex align-items-center">
                                     <input type="date" name="tanggal" class="form-control col-lg-3" value="{{ request('tanggal') }}" onchange="$('#formFilter').submit()" required>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                         <table id="myTable" class="table" style="width:100%">
                             <thead class="thead-dark">
                                 <tr>
@@ -41,6 +41,7 @@
                                     <th>Tanggal</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
+                                    <th>Pengizin</th>
                                     <th>Keterangan</th>
                                 </tr>
                             </thead>
@@ -51,6 +52,7 @@
                                         <td>{{ $item->tanggal->format('d-m-Y') }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->user->kelas }}</td>
+                                        <td>{{ $item->guru_name }}</td>
                                         <td>{{ $item->keterangan }}</td>
                                     </tr>
                                 @endforeach

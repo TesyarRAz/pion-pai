@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    @if($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
             {{ $errors->first() }}
         </div>
@@ -25,7 +25,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Atur Izin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -62,7 +62,8 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button data-toggle="modal" data-target="#create-modal" class="btn btn-outline-success mb-3">Isi Data</button>
+                            <button data-toggle="modal" data-target="#create-modal" class="btn btn-outline-success mb-3">Isi
+                                Data</button>
                         </div>
                     </div>
                     <div class="">
@@ -71,11 +72,19 @@
                                 <select name="kelas" class="form-control mb-2" onchange="$('#formFilter').submit()">
                                     <option value="">Silahkan Pilih Kelas</option>
                                     @foreach ($kelas as $e)
-                                        <option value="{{ $e }}" {{ request('kelas') == $e ? 'selected' : '' }}>{{ $e }}</option>
+                                        <option value="{{ $e }}" {{ request('kelas') == $e ? 'selected' : '' }}>
+                                            {{ $e }}</option>
                                     @endforeach
                                 </select>
-                                <div class="d-flex align-items-center">
-                                    <input type="date" name="tanggal" class="form-control col-lg-3" value="{{ request('tanggal') }}" onchange="$('#formFilter').submit()" required>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3">
+                                        <input type="date" name="from" class="form-control mb-1"
+                                            value="{{ request('from') }}" onchange="$('#formFilter').submit()">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="date" name="to" class="form-control"
+                                            value="{{ request('to') }}" onchange="$('#formFilter').submit()">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -86,6 +95,7 @@
                                     <th>Tanggal</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
+                                    <th>Pengizin</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -97,9 +107,12 @@
                                         <td>{{ $item->tanggal->format('d-m-Y') }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->user->kelas }}</td>
+                                        <td>{{ $item->guru_name }}</td>
                                         <td>{{ $item->keterangan }}</td>
                                         <td>
-                                            <a href="{{ route('guru.izin.destroy', $item->id) }}" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
+                                            <a href="{{ route('guru.izin.destroy', $item->id) }}"
+                                                class="btn btn-outline-danger"
+                                                onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

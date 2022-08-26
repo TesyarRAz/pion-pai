@@ -16,16 +16,17 @@ class IzinController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->missing('tanggal'))
+        if ($request->missing('from', 'to'))
         {
             return redirect()->route('guru.izin.index', [
-                'tanggal' => now()->format('Y-m-d'),
+                'from' => now()->format('Y-m-d'),
+                'to' => today()->format('Y-m-d')
             ]);
         }
 
         $data = Izin::query()
-        ->when($request->filled('tanggal'), fn($query) => $query
-            ->where('tanggal', $request->tanggal)
+        ->when($request->filled('from', 'to'), fn($query) => $query
+            ->whereBetween('tanggal', [$request->from, $request->to])
         )
         ->when($request->filled('kelas'), fn($query) => $query
             ->join('users', 'users.id', 'izins.user_id')
@@ -69,6 +70,8 @@ class IzinController extends Controller
         ]);
 
         $data['tanggal'] = now();
+        $data['guru_id'] = auth()->id();
+        $data['guru_name'] = auth()->user()->name;
 
         Izin::create($data);
 

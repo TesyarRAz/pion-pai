@@ -16,16 +16,14 @@ class IzinController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->missing('tanggal'))
-        {
-            return redirect()->route('satpam.izin.index', [
-                'tanggal' => now()->format('Y-m-d'),
-            ]);
-        }
+        // if ($request->missing('tanggal'))
+        // {
+        //     return redirect()->route('satpam.izin.index', [
+        //         'tanggal' => now()->format('Y-m-d'),
+        //     ]);
+        // }
 
-        $data = Izin::when($request->filled('tanggal'), fn($query) => $query
-            ->where('tanggal', $request->tanggal)
-        )->get();
+        $data = Izin::where('tanggal', now()->format('Y-m-d'))->get();
 
         return view('satpam.izin.index', compact('data'));
     }
