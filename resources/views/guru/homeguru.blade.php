@@ -39,7 +39,7 @@
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
-                                    <th>Status Absens</th>
+                                    <th>Status Absensi</th>
                                 </tr>
                             </thead>
                             <tbody>
