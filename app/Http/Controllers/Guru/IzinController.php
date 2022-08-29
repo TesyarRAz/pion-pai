@@ -67,11 +67,11 @@ class IzinController extends Controller
         $data = $request->validate([
             'user_id' => 'required|exists:users,id',
             'keterangan' => 'required',
+            'guru_name' => 'required',
         ]);
 
         $data['tanggal'] = now();
         $data['guru_id'] = auth()->id();
-        $data['guru_name'] = auth()->user()->name;
 
         Izin::create($data);
 

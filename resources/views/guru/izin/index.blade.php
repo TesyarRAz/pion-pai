@@ -38,6 +38,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="guru_name">Nama Guru</label>
+                        <input type="text" class="form-control" id="guru_name" name="guru_name" required>
+                    </div>
+                    <div class="form-group">
                         <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" required></textarea>
                     </div>
