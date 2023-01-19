@@ -114,6 +114,13 @@ class AdminController extends Controller
         return view('admin.absensi');
     }
 
+    public function resetabsensi()
+    {
+        absensi::query()->delete();
+
+        return redirect()->route('admin.absensi')->with('status', 'Berhasil reset absensi');
+    }
+
     public function harga()
     {
         return view('admin.harga', compact('setharga'));

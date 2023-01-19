@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/postedit/{user}', 'AdminController@postedit')->name('admin.postedit');
         Route::get('/hapus/{user}', 'AdminController@hapus')->name('admin.hapus');
         Route::get('/absensi', 'AdminController@absensi')->name('admin.absensi');
+        Route::post('/reset-absensi', 'AdminController@resetabsensi')->name('admin.resetabsensi');
         Route::post('/importsiswa', 'AdminController@importsiswa')->name('admin.importsiswa');
 
         Route::get('/mapel', 'MapelController@index')->name('admin.mapel.index');
