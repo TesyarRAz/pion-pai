@@ -16,12 +16,6 @@ class GuruController extends Controller
 {
     public function homeguru(Request $request)
     {
-        if ($request->missing('tanggal')) {
-            return redirect()->route('guru.homeguru', [
-                'tanggal' => today()->format('Y-m-d')
-            ]);
-        }
-
         $absensi = absensi::select('absensis.*');
 
         if ($request->filled('kelas')) {
@@ -29,8 +23,8 @@ class GuruController extends Controller
                 ->where('users.kelas', $request->kelas);
         }
 
-        if ($request->filled('tanggal')) {
-            $absensi->where('waktu_absen', $request->tanggal);
+        if ($request->filled(['from', 'to'])) {
+            $absensi->whereBetween('waktu_absen', [$request->from, $request->to]);
         }
 
         $absensi = $absensi->get();

@@ -28,7 +28,8 @@
                                     @endforeach
                                 </select>
                                 <div class="d-flex align-items-center">
-                                    <input type="date" name="tanggal" class="form-control col-lg-3" value="{{ request('tanggal') }}" onchange="$('#formFilter').submit()" required>
+                                    <input type="date" name="from" class="form-control col-lg-3 mr-1" value="{{ request('from') }}" onchange="$('#formFilter').submit()" required>
+                                    <input type="date" name="to" class="form-control col-lg-3" value="{{ request('to') }}" onchange="$('#formFilter').submit()" required>
                                 </div>
                             </form>
                         </div>
