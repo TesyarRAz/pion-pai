@@ -16,6 +16,13 @@ class GuruController extends Controller
 {
     public function homeguru(Request $request)
     {
+        if ($request->missing(['from', 'to'])) {
+            return redirect()->route('guru.homeguru', [
+                'from' => today()->format('Y-m-d'),
+                'to' => today()->addDays(1)->format('Y-m-d'),
+            ]);
+        }
+
         $absensi = absensi::select('absensis.*');
 
         if ($request->filled('kelas')) {

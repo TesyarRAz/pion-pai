@@ -40,6 +40,7 @@
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
+                                    <th>Tanggal</th>
                                     <th>Status Absensi</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                         <td>{{ $item->user->nis }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->user->kelas }}</td>
+                                        <td>{{ $item->waktu_absen }}</td>
                                         <td>{{ $item->status_absen}}</td>
                                     </tr>
                                 @endforeach
