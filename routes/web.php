@@ -55,29 +55,31 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekapcatatan/{user}', 'OsisController@rekapcatatan')->name('osis.rekapcatatan');
     });
 
-    Route::middleware('can:role_admin')->prefix('admin')->group(function () {
-        Route::get('/member', 'AdminController@member')->name('admin.member');
-        Route::get('/tambah', 'AdminController@tambah')->name('admin.tambah');
-        Route::post('/posttambah', 'AdminController@posttambah')->name('admin.posttambah');
-        Route::get('/edit/{user}', 'AdminController@edit')->name('admin.edit');
-        Route::post('/postedit/{user}', 'AdminController@postedit')->name('admin.postedit');
-        Route::get('/hapus/{user}', 'AdminController@hapus')->name('admin.hapus');
-        Route::get('/absensi', 'AdminController@absensi')->name('admin.absensi');
-        Route::post('/reset-absensi', 'AdminController@resetabsensi')->name('admin.resetabsensi');
-        Route::post('/importsiswa', 'AdminController@importsiswa')->name('admin.importsiswa');
+    Route::middleware('can:role_admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/member', 'AdminController@member')->name('member');
+        Route::get('/tambah', 'AdminController@tambah')->name('tambah');
+        Route::post('/posttambah', 'AdminController@posttambah')->name('posttambah');
+        Route::get('/edit/{user}', 'AdminController@edit')->name('edit');
+        Route::post('/postedit/{user}', 'AdminController@postedit')->name('postedit');
+        Route::get('/hapus/{user}', 'AdminController@hapus')->name('hapus');
+        Route::get('/absensi', 'AdminController@absensi')->name('absensi');
+        Route::post('/reset-absensi', 'AdminController@resetabsensi')->name('resetabsensi');
+        Route::post('/importsiswa', 'AdminController@importsiswa')->name('importsiswa');
 
-        Route::get('/mapel', 'MapelController@index')->name('admin.mapel.index');
-        Route::get('/mapel/tambah', 'MapelController@create')->name('admin.mapel.create');
-        Route::post('/mapel/store', 'MapelController@store')->name('admin.mapel.store');
-        Route::get('/mapel/edit/{mapel}', 'MapelController@edit')->name('admin.mapel.edit');
-        Route::post('/mapel/update/{mapel}', 'MapelController@update')->name('admin.mapel.update');
-        Route::get('/mapel/hapus/{mapel}', 'MapelController@destroy')->name('admin.mapel.destroy');
-        Route::post('/mapel/import', 'MapelController@import')->name('admin.mapel.import');
+        Route::get('/mapel', 'MapelController@index')->name('mapel.index');
+        Route::get('/mapel/tambah', 'MapelController@create')->name('mapel.create');
+        Route::post('/mapel/store', 'MapelController@store')->name('mapel.store');
+        Route::get('/mapel/edit/{mapel}', 'MapelController@edit')->name('mapel.edit');
+        Route::post('/mapel/update/{mapel}', 'MapelController@update')->name('mapel.update');
+        Route::get('/mapel/hapus/{mapel}', 'MapelController@destroy')->name('mapel.destroy');
+        Route::post('/mapel/import', 'MapelController@import')->name('mapel.import');
 
-        Route::get('/informasi', 'AdminController@informasi')->name('admin.informasi.index');
-        Route::get('/informasi/{inf_guru}/hapus', 'AdminController@destroyinformasi')->name('admin.informasi.destroy');
-        Route::post('/informasi/{inf_guru}/update', 'AdminController@updateinformasi')->name('admin.informasi.update');
-        Route::get('/informasi/{inf_guru}/edit', 'AdminController@editinformasi')->name('admin.informasi.edit');
+        Route::get('/informasi', 'AdminController@informasi')->name('informasi.index');
+        Route::get('/informasi/{inf_guru}/hapus', 'AdminController@destroyinformasi')->name('informasi.destroy');
+        Route::post('/informasi/{inf_guru}/update', 'AdminController@updateinformasi')->name('informasi.update');
+        Route::get('/informasi/{inf_guru}/edit', 'AdminController@editinformasi')->name('informasi.edit');
+
+        Route::resource('setting', 'Admin\\SettingController');
     });
 
     Route::middleware('can:role_satpam')->prefix('satpam')->namespace('Satpam')->name('satpam.')->group(function () {

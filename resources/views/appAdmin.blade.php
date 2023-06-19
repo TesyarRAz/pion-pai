@@ -67,7 +67,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['admin/member/*', 'admin/member']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin.member') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Data Siswa') }}</span></a>
@@ -78,17 +78,17 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                {{ __('Settings') }}
+                {{ __('Pengelolaan') }}
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['admin/informasi/*', 'admin/informasi']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin.informasi.index') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Informasi Guru') }}</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['admin/mapel/*', 'admin/mapel']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin.mapel.index') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Mapel') }}</span>
@@ -96,10 +96,23 @@
             </li>
 
             <!-- Nav Item - Profile -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['admin/absensi/*', 'admin/absensi']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin.absensi') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Absensi') }}</span>
+                </a>
+            </li>
+
+            
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Pengaturan') }}
+            </div>
+
+            <li class="nav-item {{ request()->is(['admin/setting/*', 'admin/setting']) ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{{ __('Aplikasi') }}</span>
                 </a>
             </li>
 

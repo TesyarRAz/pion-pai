@@ -23,14 +23,10 @@
     <!-- Favicon -->
     <link href="{{ asset('img/perum.png') }}" rel="icon" type="image/png">
 
-    <style type="text/css">
-        .bg-login-image {
-            background-image: url({{ asset('img/cover-login.png') }})
-        }
-    </style>
+    @stack('css')
 </head>
 
-<body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
+<body>
 
     @yield('main-content')
 
@@ -38,6 +34,8 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    @stack('js')
 </body>
 
 </html>

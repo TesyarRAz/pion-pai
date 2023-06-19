@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\ElseIf_;
@@ -10,7 +11,9 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        $general_settings = resolve(GeneralSettings::class);
+
+        return view('auth.login', compact('general_settings'));
     }
 
     public function postlogin(Request $request)

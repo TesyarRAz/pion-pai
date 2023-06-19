@@ -1,5 +1,27 @@
 @extends('app')
 
+@push('css')
+    <style type="text/css">
+        body {
+            @if ($general_settings->background_type == 'warna')
+                background-color: {{ $general_settings->background_app }};
+            @elseif ($general_settings->background_type == 'gambar')
+                background-image: url("{{ $general_settings->background_app }}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            @endif
+            height:100vh;
+            display:grid;
+            place-items:center
+        }
+
+        .bg-login-image {
+            background-image: url("{{ filled($general_settings->logo_app) ? $general_settings->logo_app : '/img/cover-login.png' }}");
+        }
+    </style>
+@endpush
+
 @section('main-content')
     <div class="container">
         <div class="row justify-content-center">
