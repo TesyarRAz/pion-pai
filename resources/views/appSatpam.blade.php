@@ -42,6 +42,15 @@
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
 
+    
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+
+    <script type="text/javascript">
+    $.fn.select2.defaults.set("theme", "bootstrap4");
+    </script>
+
     <script type="text/javascript">
         $.extend($.fn.dataTable.defaults, {
             scrollX: true,

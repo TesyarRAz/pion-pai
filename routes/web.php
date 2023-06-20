@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/informasi/{inf_guru}/edit', 'AdminController@editinformasi')->name('informasi.edit');
 
         Route::resource('setting', 'Admin\\SettingController');
+        Route::resource('gurumapel', 'Admin\\GuruMapelController')->parameter('gurumapel', 'guru_mapel');
     });
 
     Route::middleware('can:role_satpam')->prefix('satpam')->namespace('Satpam')->name('satpam.')->group(function () {

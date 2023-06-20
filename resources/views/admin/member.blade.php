@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Data Member') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Kelola User') }}</h1>
 
     @if (session('status'))
         <div class="alert alert-success border-left-success" role="alert">
@@ -47,22 +47,28 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Member</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">User</h6>
                 </div>
                 <div class="card-body">
                     <div class="">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="{{ route('admin.tambah') }}" class="btn btn-outline-success mb-3">Isi Data</a>
+                                <a href="{{ route('admin.tambah') }}" class="btn btn-outline-success mb-3">
+                                    <i class="fas fa-fw fa-plus"></i>
+                                    Isi Data
+                                </a>
                             </div>
                             <div>
-                                <a href="{{ route('admin.member', ['reset' => 'sekertaris']) }}" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                <a href="{{ route('admin.member', ['reset' => 'sekertaris']) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                    <i class="fas fa-fw fa-trash"></i>
                                     Reset Sekertaris
                                 </a>
-                                <a href="{{ route('admin.member', ['reset' => 'siswa']) }}" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                <a href="{{ route('admin.member', ['reset' => 'siswa']) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?') && confirm('Yakin ingin dihapus (2) ?') && prompt('Ketik Ya jika sudah yakin') == 'Ya'">
+                                    <i class="fas fa-fw fa-trash"></i>
                                     Reset Siswa
                                 </a>
-                                <button type="button" data-target="#modal-import" data-toggle="modal" class="btn btn-outline-primary">
+                                <button type="button" data-target="#modal-import" data-toggle="modal" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-fw fa-download"></i>
                                     Import
                                 </button>
                             </div>
@@ -91,9 +97,15 @@
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->role }}</td>
                                     <td>
-                                        <a href="{{ route('admin.edit',$item->id) }}" class="btn btn-outline-primary">Edit</a>
-                                        <a href="{{ route('admin.hapus',$item->id) }}" class="btn btn-outline-danger"
-                                            onclick="return confirm('Yakin ingin hapus')">Hapus</a>
+                                        <a href="{{ route('admin.edit',$item->id) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-fw fa-pencil-alt"></i>
+                                            Edit
+                                        </a>
+                                        <a href="{{ route('admin.hapus',$item->id) }}" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Yakin ingin hapus')">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -24,12 +24,15 @@
                                 <select name="kelas" class="form-control mb-2" onchange="$('#formFilter').submit()">
                                     <option value="">Silahkan Pilih Kelas</option>
                                     @foreach ($kelas as $e)
-                                        <option value="{{ $e }}" {{ request('kelas') == $e ? 'selected' : '' }}>{{ $e }}</option>
+                                        <option value="{{ $e }}" {{ request('kelas') == $e ? 'selected' : '' }}>
+                                            {{ $e }}</option>
                                     @endforeach
                                 </select>
                                 <div class="d-flex align-items-center">
-                                    <input type="date" name="from" class="form-control col-lg-3 mr-1" value="{{ request('from') }}" onchange="$('#formFilter').submit()" required>
-                                    <input type="date" name="to" class="form-control col-lg-3" value="{{ request('to') }}" onchange="$('#formFilter').submit()" required>
+                                    <input type="date" name="from" class="form-control col-lg-3 mr-1"
+                                        value="{{ request('from') }}" onchange="$('#formFilter').submit()" required>
+                                    <input type="date" name="to" class="form-control col-lg-3"
+                                        value="{{ request('to') }}" onchange="$('#formFilter').submit()" required>
                                 </div>
                             </form>
                         </div>
@@ -52,7 +55,7 @@
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->user->kelas }}</td>
                                         <td>{{ $item->waktu_absen }}</td>
-                                        <td>{{ $item->status_absen}}</td>
+                                        <td>{{ $item->status_absen }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -66,9 +69,21 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myTable').DataTable({
-                buttons: [
-                    'print'
-                ],
+                buttons: [{
+                    extend: 'print',
+                    title: '',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<img src="{{ filled($general_settings->corp_gambar) ? $general_settings->corp_gambar : 'http://datatables.net/media/images/logo-fade.png' }}" width="100%" height="200px"/>'
+                            );
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }],
                 dom: 'Brftip'
             });
         });

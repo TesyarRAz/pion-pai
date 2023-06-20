@@ -29,7 +29,7 @@
                     <form class="d-flex justify-content-between" action="{{ route('admin.resetabsensi') }}" method="POST"
                         onsubmit="return confirm('Yakin ingin direset?') && confirm('Serius ingin di reset') && prompt('Ketik ya jika ingin di reset') === 'ya'">
                         @csrf
-                        <span class="card-text font-weight-bold">Reset Absensi</span>
+                        <span class="card-text font-weight-bold">Reset Absensi ( semua )</span>
                         <button type="submit" class="btn btn-sm btn-outline-danger">
                             <i class="fas fa-fw fa-circle"></i>
                         </button>

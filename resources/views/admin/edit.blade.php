@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Data Member') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Kelola User') }}</h1>
 
     @if (session('status'))
         <div class="alert alert-success border-left-success" role="alert">
@@ -25,46 +25,51 @@
                         <form action="{{ route('admin.postedit', $user->id) }}" method="POST">
                             @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Username</label>
-                                    <input type="text"  class="form-control" name="username" value="{{ $user->username }}" >
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Password</label>
-                                    <input type="password" name="password" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label>NIS</label>
-                                    <input type="number" name="nis" class="form-control" value="{{ $user->NIS }}">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">NIS</label>
+                                        <input type="number" name="nis" class="form-control" value="{{ $user->nis }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Nama</label>
+                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" value="{{ $user->alamat }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Role</label>
+                                        <select name="role" class="form-control">
+                                            @foreach (['sekertaris', 'osis', 'siswa', 'guru', 'satpam', 'admin'] as $role)
+                                                <option value="{{ $role }}"
+                                                    @if ($user->role == $role) selected @endif>
+                                                    {{ strtoupper($role) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kelas</label>
+                                        <input type="text" name="kelas" class="form-control"
+                                            value="{{ $user->kelas }}">
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Nama</label>
-                                    <input type="text" class="form-control" name="name" value="{{ $user->name }}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Kelas</label>
-                                    <input type="text" name="kelas" class="form-control" value="{{ $user->kelas }}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" value="{{ $user->alamat }}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Role</label>
-                                    <select name="role" class="form-control">
-                                        @foreach (['sekertaris','osis','siswa','guru', 'satpam'] as $role)
-                                            <option value="{{ $role }}" @if($user->role == $role) selected @endif>{{ strtoupper($role) }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Username <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="username"
+                                            value="{{ $user->username }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold">Password <span class="text-danger">*</span></label>
+                                        <input type="password" name="password" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Kirim</button>
                         </form>
-
                     </div>
                 </div>
             </div>

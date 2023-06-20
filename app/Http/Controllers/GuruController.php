@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\absensi;
+use App\Models\GuruMapel;
 use App\Models\inf_guru;
 use App\Models\inf_tugas;
 use App\Models\Mapel;
 use App\Models\user;
-
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Facades\Excel;
@@ -37,7 +38,9 @@ class GuruController extends Controller
         $absensi = $absensi->get();
 
         $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
-        return view('guru.homeguru', compact('absensi', 'kelas'));
+        $general_settings = resolve(GeneralSettings::class);
+
+        return view('guru.homeguru', compact('absensi', 'kelas', 'general_settings'));
     }
 
     public function guru(Request $request)
@@ -93,8 +96,9 @@ class GuruController extends Controller
     {
         $mapel = Mapel::all();
         $kelas = user::query()->whereNotNull('kelas')->groupBy('kelas')->pluck('kelas');
+        $gurumapel = GuruMapel::all();
 
-        return view('guru.tambahguru', compact('mapel', 'kelas'));
+        return view('guru.tambahguru', compact('mapel', 'kelas', 'gurumapel'));
     }
 
     public function posttambahguru(Request $request)

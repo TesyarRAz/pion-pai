@@ -19,11 +19,31 @@
         </div>
     @endif
 
-    @include('admin.setting.file_modal', ['id' => 'modal-logo-app', 'name' => 'logo_app', 'accept' => 'image/*'])
-    @include('admin.setting.combobox_modal', ['id' => 'modal-background-type', 'name' => 'background_type', 'items' => ['warna' => 'Warna', 'gambar' => 'Gambar']])
+    @include('admin.setting.file_modal', [
+        'id' => 'modal-logo-app',
+        'name' => 'logo_app',
+        'accept' => 'image/*',
+    ])
+    @include('admin.setting.file_modal', [
+        'id' => 'modal-corp-gambar',
+        'name' => 'corp_gambar',
+        'accept' => 'image/*',
+    ])
+    @include('admin.setting.combobox_modal', [
+        'id' => 'modal-background-type',
+        'name' => 'background_type',
+        'items' => ['warna' => 'Warna', 'gambar' => 'Gambar'],
+    ])
 
-    @includeWhen($general_settings->background_type == 'gambar', 'admin.setting.file_modal', ['id' => 'modal-background-app', 'name' => 'background_app', 'accept' => 'image/*'])
-    @includeWhen($general_settings->background_type == 'warna', 'admin.setting.color_modal', ['id' => 'modal-background-app', 'name' => 'background_app'])
+    @includeWhen($general_settings->background_type == 'gambar', 'admin.setting.file_modal', [
+        'id' => 'modal-background-app',
+        'name' => 'background_app',
+        'accept' => 'image/*',
+    ])
+    @includeWhen($general_settings->background_type == 'warna', 'admin.setting.color_modal', [
+        'id' => 'modal-background-app',
+        'name' => 'background_app',
+    ])
 
     <div class="row mb-5">
         <div class="col-12 col-xl-4">
@@ -35,10 +55,12 @@
                     <div class="form-row form-group justify-content-between">
                         <div class="col-4">
                             <label class="font-weight-bold">Logo App</label>
-                            <img src="{{ filled($general_settings->logo_app) ? $general_settings->logo_app : asset('empty-image.webp') }}" class="img-fluid" width="300px" height="300px" alt="">
+                            <img src="{{ filled($general_settings->logo_app) ? $general_settings->logo_app : asset('empty-image.webp') }}"
+                                class="img-fluid" width="300px" height="300px" alt="">
                         </div>
                         <div class="col-5">
-                            <button class="btn-block btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-logo-app">
+                            <button class="btn-block btn btn-primary btn-sm" data-toggle="modal"
+                                data-target="#modal-logo-app">
                                 <i class="fas fa-fw fa-pencil-alt"></i>
                                 Edit
                             </button>
@@ -50,7 +72,8 @@
                             <span>{{ $general_settings->background_type }}</span>
                         </div>
                         <div class="col-5">
-                            <button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-background-type">
+                            <button class="btn btn-block btn-primary btn-sm" data-toggle="modal"
+                                data-target="#modal-background-type">
                                 <i class="fas fa-fw fa-pencil-alt"></i>
                                 Edit
                             </button>
@@ -60,18 +83,45 @@
                         <div class="col-4">
                             <label class="font-weight-bold">Background App</label>
                             @if ($general_settings->background_type == 'warna')
-                            <div style="width: 100px; height: 100px; background-color: {{ $general_settings->background_app }}"></div>
+                                <div
+                                    style="width: 100px; height: 100px; background-color: {{ $general_settings->background_app }}">
+                                </div>
                             @elseif ($general_settings->background_type == 'gambar')
-                            <img src="{{ filled($general_settings->background_app) ? $general_settings->background_app : asset('empty-image.webp') }}" class="img-fluid" width="300px" height="300px" alt="">
+                                <img src="{{ filled($general_settings->background_app) ? $general_settings->background_app : asset('empty-image.webp') }}"
+                                    class="img-fluid" width="300px" height="300px" alt="">
                             @endif
                         </div>
                         <div class="col-5">
-                            <button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-background-app">
+                            <button class="btn btn-block btn-primary btn-sm" data-toggle="modal"
+                                data-target="#modal-background-app">
                                 <i class="fas fa-fw fa-pencil-alt"></i>
                                 Edit
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-envelope fa-fw mr-2"></i> {{ __('Surat') }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-row form-group justify-content-between">
+                        <div class="col-7">
+                            <label class="font-weight-bold">Corp Gambar</label>
+                        </div>
+                        <div class="col-5">
+                            <button class="btn-block btn btn-primary btn-sm" data-toggle="modal"
+                                data-target="#modal-corp-gambar">
+                                <i class="fas fa-fw fa-pencil-alt"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                    <img src="{{ filled($general_settings->corp_gambar) ? $general_settings->corp_gambar : asset('empty-image.webp') }}"
+                    class="img-fluid" style="max-width: 100%" alt="">
                 </div>
             </div>
         </div>

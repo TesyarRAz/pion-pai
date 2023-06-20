@@ -41,6 +41,15 @@
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
+
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+
+    <script type="text/javascript">
+    $.fn.select2.defaults.set("theme", "bootstrap4");
+    </script>
+
     <script type="text/javascript">
         $.extend($.fn.dataTable.defaults, {
             scrollX: true,
@@ -64,22 +73,19 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is(['admin/member/*', 'admin/member']) ? 'active' : ''}}">
-                <a class="nav-link" href="{{ route('admin.member') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>{{ __('Data Siswa') }}</span></a>
-            </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
                 {{ __('Pengelolaan') }}
             </div>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{ request()->is(['admin/member/*', 'admin/member']) ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin.member') }}">
+                    <i class="fas fa-user"></i>
+                    <span>{{ __('Kelola User') }}</span></a>
+            </li>
 
             <li class="nav-item {{ request()->is(['admin/informasi/*', 'admin/informasi']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('admin.informasi.index') }}">
@@ -92,6 +98,13 @@
                 <a class="nav-link" href="{{ route('admin.mapel.index') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Mapel') }}</span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ request()->is(['admin/gurumapel/*', 'admin/gurumapel']) ? 'active' : ''}}">
+                <a class="nav-link" href="{{ route('admin.gurumapel.index') }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{{ __('Kelola Guru Mapel') }}</span>
                 </a>
             </li>
 

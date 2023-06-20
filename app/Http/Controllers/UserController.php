@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\user;
 use App\Models\absensi;
+use App\Models\GuruMapel;
 use App\Models\inf_tugas;
 use App\Models\inf_guru;
 use App\Models\Mapel;
@@ -29,6 +30,7 @@ class UserController extends Controller
             $u->total_sakit = $u->absensi->where('status_absen', 'sakit')->count();
             $u->total_alpa = $u->absensi->where('status_absen', 'alpa')->count();
             $u->total_ijin = $u->absensi->where('status_absen', 'ijin')->count();
+            $u->total_kabur = $u->absensi->where('status_absen', 'kabur')->count();
         }
 
         return view('user.rwAbsensi', compact('user'));
@@ -65,8 +67,9 @@ class UserController extends Controller
     public function tambahinf()
     {
         $mapel = Mapel::all();
+        $gurumapel = GuruMapel::all();
 
-        return view('user.tambahinf', compact('mapel'));
+        return view('user.tambahinf', compact('mapel', 'gurumapel'));
     }
 
     public function posttambahinf(Request $request)
@@ -93,8 +96,9 @@ class UserController extends Controller
     public function editinf(Request $request, inf_guru $inf_guru)
     {
         $mapel = Mapel::all();
+        $gurumapel = GuruMapel::all();
 
-        return view('user.editinf', compact('mapel', 'inf_guru'));
+        return view('user.editinf', compact('mapel', 'inf_guru', 'gurumapel'));
     }
 
     public function posteditinf(Request $request, inf_guru $inf_guru)
@@ -116,7 +120,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'status_absen' => 'required|in:alpa,sakit,ijin,hadir',
+            'status_absen' => 'required|in:alpa,sakit,ijin,hadir,kabur',
         ]);
 
         $absensi = absensi::firstWhere([

@@ -9,5 +9,6 @@ return new class extends SettingsMigration
         $this->migrator->add('general.logo_app', '');
         $this->migrator->add('general.background_app', '');
         $this->migrator->add('general.background_type', '');
+        $this->migrator->add('general.corp_gambar', '');
     }
 };

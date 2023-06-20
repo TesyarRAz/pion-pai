@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Data Mapel') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Kelola Mapel') }}</h1>
 
     @if (session('status'))
         <div class="alert alert-success border-left-success" role="alert">
@@ -53,10 +53,11 @@
                     <div class="">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="{{ route('admin.mapel.create') }}" class="btn btn-outline-success mb-3">Isi Data</a>
+                                <a href="{{ route('admin.mapel.create') }}" class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-fw fa-plus"></i>Isi Data</a>
                             </div>
                             <div>
-                                <button type="button" data-target="#modal-import" data-toggle="modal" class="btn btn-outline-primary">
+                                <button type="button" data-target="#modal-import" data-toggle="modal" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-fw fa-download"></i>
                                     Import
                                 </button>
                             </div>
@@ -75,9 +76,15 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>
-                                        <a href="{{ route('admin.mapel.edit',$item->id) }}" class="btn btn-outline-primary">Edit</a>
-                                        <a href="{{ route('admin.mapel.destroy',$item->id) }}" class="btn btn-outline-danger"
-                                            onclick="return confirm('Yakin ingin hapus')">Hapus</a>
+                                        <a href="{{ route('admin.mapel.edit',$item->id) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-fw fa-pencil-alt"></i>
+                                            Edit
+                                        </a>
+                                        <a href="{{ route('admin.mapel.destroy',$item->id) }}" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Yakin ingin hapus')">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

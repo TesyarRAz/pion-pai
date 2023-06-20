@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\absensi;
 use App\Models\cat_kesalahan;
+use App\Models\GuruMapel;
 use App\Models\inf_guru;
 use App\Models\inf_tugas;
 use App\Models\Izin;
@@ -43,7 +44,7 @@ class AdminController extends Controller
             return redirect()->route('admin.member')->with('status', 'Data berhasil direset');
         }
 
-        $user = user::whereNotIn('role', ['admin'])->get();
+        $user = user::latest()->get();
         
         return view('admin.member', compact('user'));
     }
@@ -252,8 +253,9 @@ class AdminController extends Controller
     public function editinformasi(Request $request, inf_guru $inf_guru)
     {
         $mapel = Mapel::all();
+        $gurumapel = GuruMapel::all();
 
-        return view('admin.informasiedit', compact('mapel', 'inf_guru'));
+        return view('admin.informasiedit', compact('mapel', 'inf_guru', 'gurumapel'));
     }
 
     public function updateinformasi(Request $request, inf_guru $inf_guru)

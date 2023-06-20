@@ -26,7 +26,12 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Nama</label>
-                                    <input type="text"  class="form-control" name="name" required>
+                                    
+                                    <select name="name" id="name-guru" class="form-control" required>
+                                        @foreach ($gurumapel as $e)
+                                        <option value="{{ $e->name }}">{{ $e->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Mata Pelajaran</label>
@@ -49,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Kirim</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
 
                     </div>
@@ -60,7 +65,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#name-guru').select2();
         });
     </script>
 @endsection

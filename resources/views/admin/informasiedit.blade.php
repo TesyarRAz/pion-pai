@@ -26,7 +26,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Nama</label>
-                                    <input type="text"  class="form-control" name="name" value="{{ $inf_guru->name }}" required>
+                                    <select name="name" id="name-guru" class="form-control" required>
+                                        @foreach ($gurumapel as $e)
+                                        <option value="{{ $e->name }}" @if($e->name == $inf_guru->name) selected @endif>{{ $e->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Mata Pelajaran</label>
@@ -60,7 +64,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#name-guru').select2();
         });
     </script>
 @endsection

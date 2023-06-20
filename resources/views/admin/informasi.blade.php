@@ -65,8 +65,14 @@
                                     <td>{{ $item->jp }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('admin.informasi.edit', $item->id) }}" class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{ route('admin.informasi.destroy', $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
+                                        <a href="{{ route('admin.informasi.edit', $item->id) }}" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-fw fa-pencil-alt"></i>
+                                            Edit
+                                        </a>
+                                        <a href="{{ route('admin.informasi.destroy', $item->id) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin dihapus ?')">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

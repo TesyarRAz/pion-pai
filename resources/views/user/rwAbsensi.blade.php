@@ -30,6 +30,7 @@
                                     <th>Sakit</th>
                                     <th>Ijin</th>
                                     <th>Alpa</th>
+                                    <th>Kabur</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -42,8 +43,12 @@
                                     <td>{{ $item->total_sakit }}</td>
                                     <td>{{ $item->total_ijin }}</td>
                                     <td>{{ $item->total_alpa }}</td>
+                                    <td>{{ $item->total_kabur }}</td>
                                     <td>
-                                        <a href="{{ route('user.rekapabsensi', $item->id) }}" class="btn btn-outline-primary">Ditel</a>
+                                        <a href="{{ route('user.rekapabsensi', $item->id) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-fw fa-book"></i>
+                                            Ditel
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

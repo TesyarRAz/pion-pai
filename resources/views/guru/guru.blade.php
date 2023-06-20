@@ -22,7 +22,8 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <a href="{{ route('guru.tambahguru') }}" class="btn btn-outline-success mb-4">
+                        <a href="{{ route('guru.tambahguru') }}" class="btn btn-sm btn-outline-success mb-4">
+                            <i class="fas fa-fw fa-plus"></i>
                             Isi Informasi
                         </a>
 
@@ -67,8 +68,11 @@
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('guru.hapusguru',$item->id) }}" class="btn btn-outline-danger"
-                                            onclick="return confirm('Yakin ingin hapus')">Hapus</a>
+                                        <a href="{{ route('guru.hapusguru',$item->id) }}" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Yakin ingin hapus')">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

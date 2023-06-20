@@ -22,7 +22,10 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <a href="{{ route('user.tambahinf') }}" class="btn btn-outline-success mb-3">Isi Informasi</a>
+                        <a href="{{ route('user.tambahinf') }}" class="btn btn-sm btn-outline-success mb-3">
+                            <i class="fas fa-fw fa-plus"></i>
+                            Isi Informasi
+                        </a>
                         <table id="myTable" class="table" style="width:100%">
                             <thead class="thead-dark">
                                 <tr>
@@ -45,9 +48,15 @@
                                     <td>{{ $item->jp }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
-                                        <a href="{{ route('user.editinf',$item->id) }}" class="btn btn-outline-primary">Edit</a>
-                                        <a href="{{ route('user.hapusguru',$item->id) }}" class="btn btn-outline-danger"
-                                            onclick="return confirm('Yakin ingin hapus')">Hapus</a>
+                                        <a href="{{ route('user.editinf',$item->id) }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-fw fa-pencil-alt"></i>
+                                            Edit
+                                        </a>
+                                        <a href="{{ route('user.hapusguru',$item->id) }}" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Yakin ingin hapus')">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

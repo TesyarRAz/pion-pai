@@ -45,6 +45,12 @@ class SettingController extends Controller
             ]);
 
             $data['logo_app'] = $this->file_upload($request->value);
+        } else if ($request->name == 'corp_gambar') {
+            $request->validate([
+                'value' => 'required|file|image',
+            ]);
+
+            $data['corp_gambar'] = $this->file_upload($request->value);
         } else {
             $data[$request->name] = $request->value;
         }
@@ -57,7 +63,7 @@ class SettingController extends Controller
     private function filled_values()
     {
         return [
-            'background_type', 'background_app', 'logo_app',
+            'background_type', 'background_app', 'logo_app', 'corp_gambar'
         ];
     }
 

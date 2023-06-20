@@ -43,6 +43,15 @@
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
 
+    
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+
+    <script type="text/javascript">
+    $.fn.select2.defaults.set("theme", "bootstrap4");
+    </script>
+
     <script type="text/javascript">
         $.extend($.fn.dataTable.defaults, {
             scrollX: true,
@@ -69,14 +78,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['user/informasi']) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.informasi') }}">
                     <i class="fas fa-fw fa-book"></i>
                     <span>{{ __('Informasi Pembelajaran') }}</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['user/guru', 'user/tambahinf', 'user/editinf/*']) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.guru') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Informasi Guru') }}</span></a>
@@ -91,7 +100,7 @@
             </div>
 
             <!-- Nav Item - Profile -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['user/home']) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.homeSeker') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>{{ __('Kelola Absensi') }}</span>
@@ -99,7 +108,7 @@
             </li>
 
             <!-- Nav Item - About -->
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->is(['user/riwayat']) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.rwAbsensi') }}">
                     <i class="fas fa-layer-group"></i>
                     <span>{{ __('Riwayat Absensi') }}</span>

@@ -22,17 +22,12 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <form action="{{ route('user.informasi') }}" class="row align-items-center mb-4">
+                        <form id="formFilter" action="{{ route('user.informasi') }}" class="row align-items-center mb-4">
                             <div class="col-lg-3">
-                                <input type="date" class="form-control mb-1" name="from" value="{{ request('from') }}" required>
+                                <input type="date" class="form-control mb-1" name="from" value="{{ request('from') }}" onchange="$('#formFilter').submit()" required>
                             </div>
                             <div class="col-lg-3">
-                                <input type="date" class="form-control" name="to" value="{{ request('to') }}" required>
-                            </div>
-                            <div class="col-lg-2">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </button>
+                                <input type="date" class="form-control" name="to" value="{{ request('to') }}"  onchange="$('#formFilter').submit()" required>
                             </div>
                         </form>
                         <table id="myTable" class="table" style="width:100%">

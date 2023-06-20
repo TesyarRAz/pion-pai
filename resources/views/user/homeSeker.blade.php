@@ -79,7 +79,10 @@
                                         <td>{{ $item->kelas }}</td>
                                         <td>{{ $item->alamat }}</td>
                                         <td>
-                                            <button type="button" onclick="showModalAbsensi('{{ $item->id }}')"  class="btn btn-outline-primary">Absensi</button>
+                                            <button type="button" onclick="showModalAbsensi('{{ $item->id }}')"  class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-fw fa-pencil-alt"></i>
+                                                Absensi
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

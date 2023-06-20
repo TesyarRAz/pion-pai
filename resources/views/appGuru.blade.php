@@ -42,6 +42,14 @@
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/Buttons-2.2.3/js/buttons.print.min.js') }}"></script>
 
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+
+    <script type="text/javascript">
+    $.fn.select2.defaults.set("theme", "bootstrap4");
+    </script>
+
     <script type="text/javascript">
         $.extend($.fn.dataTable.defaults, {
             scrollX: true,
@@ -68,14 +76,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['guru/guru', 'guru/tambahguru']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('guru.guru') }}">
                     <i class="fas fa-fw fa-book"></i>
                     <span>{{ __('Informasi Pembelajaran') }}</span></a>
             </li>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is(['guru/informasi']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('guru.informasi') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Informasi Guru') }}</span></a>
@@ -98,13 +106,13 @@
             </li> --}}
 
             <!-- Nav Item - About -->
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->is(['guru/homeguru']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('guru.homeguru') }}">
                     <i class="fas fa-layer-group"></i>
                     <span>{{ __('Riwayat Kehadiran') }}</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item {{ request()->is(['guru/izin', 'guru/izin/*']) ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route('guru.izin.index') }}">
                     <i class="fas fa-layer-group"></i>
                     <span>{{ __('Daftar Izin') }}</span>

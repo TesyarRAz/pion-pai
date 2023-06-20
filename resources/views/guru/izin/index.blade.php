@@ -66,7 +66,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button data-toggle="modal" data-target="#create-modal" class="btn btn-outline-success mb-3">Isi
+                            <button data-toggle="modal" data-target="#create-modal" class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-fw fa-plus"></i>Isi
                                 Data</button>
                         </div>
                     </div>
