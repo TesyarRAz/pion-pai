@@ -79,7 +79,9 @@ class UserController extends Controller
             'mapel_id'=>'required',
             'keterangan'=>'required',
             'jp'=>'required',
+            'status_masuk' => 'bail',
         ]);
+        $data['status_masuk'] = $request->filled('status_masuk') ? 'masuk' : 'tidak';
         $data['kelas'] = auth()->user()->kelas;
         $data['tanggal'] = now();
         $data['user_id'] = auth()->id();

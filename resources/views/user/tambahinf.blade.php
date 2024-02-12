@@ -54,6 +54,11 @@
                                 </div>
                             </div>
 
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="checkStatusMasuk" name="status_masuk">
+                                <label class="form-check-label" for="checkStatusMasuk" checked>Masuk</label>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
 

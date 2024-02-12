@@ -34,6 +34,7 @@
                                     <th>Mapel</th>
                                     <th>Tanggal</th>
                                     <th>Jumlah JP</th>
+                                    <th>Status</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -46,6 +47,7 @@
                                     <td>{{ $item->mapel->nama }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->jp }}</td>
+                                    <td>{!! $item->status_masuk == 'masuk' ? '<span class="badge badge-success">Masuk</span>' : '<span class="badge badge-danger">Tidak Masuk</span>' !!}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>
                                         <a href="{{ route('user.editinf',$item->id) }}" class="btn btn-sm btn-outline-primary">
