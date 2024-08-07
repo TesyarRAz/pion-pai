@@ -45,6 +45,10 @@
                         <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="no_surat">No Surat</label>
+                        <input type="text" class="form-control" id="no_surat" name="no_surat" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -101,6 +105,8 @@
                                     <th>Kelas</th>
                                     <th>Pengizin</th>
                                     <th>Keterangan</th>
+                                    <th>No Surat</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -113,10 +119,24 @@
                                         <td>{{ $item->user->kelas }}</td>
                                         <td>{{ $item->guru_name }}</td>
                                         <td>{{ $item->keterangan }}</td>
+                                        <td>{{ $item->no_surat }}</td>
+                                        <td>{{ $item->status }}</td>
                                         <td>
+                                            @if ($item->status == 'keluar')
+                                            <button type="button"
+                                            class="btn btn-outline-primary"
+                                            onclick="$('#form-verification-{{ $item->id }}').submit()">Verifikasi</button>
+                                            @endif
                                             <a href="{{ route('guru.izin.destroy', $item->id) }}"
                                                 class="btn btn-outline-danger"
                                                 onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
+
+                                            <form action="{{ route('guru.izin.update', $item->id) }}" class="d-none" method="POST" id="form-verification-{{ $item->id }}" onsubmit="return confirm('Yakin ingin diverifikasi ?')">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <input type="hidden" name="status" value="kembali">
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

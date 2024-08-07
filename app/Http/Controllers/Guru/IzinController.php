@@ -68,6 +68,7 @@ class IzinController extends Controller
             'user_id' => 'required|exists:users,id',
             'keterangan' => 'required',
             'guru_name' => 'required',
+            'no_surat' => 'required',
         ]);
 
         $data['tanggal'] = now();
@@ -109,7 +110,13 @@ class IzinController extends Controller
      */
     public function update(Request $request, Izin $izin)
     {
-        //
+        $data = $request->validate([
+            'status' => 'required|in:keluar,kembali',
+        ]);
+
+        $izin->update($data);
+
+        return redirect()->route('guru.izin.index')->with('status', 'Data berhasil diverifikasi');
     }
 
     /**

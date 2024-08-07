@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::namespace('Guru')->group(function() {        
             Route::get('/izin', 'IzinController@index')->name('izin.index');
             Route::post('/izin', 'IzinController@store')->name('izin.store');
+            Route::put('/izin/{izin}', 'IzinController@update')->name('izin.update');
             Route::get('/izin/{izin}/delete', 'IzinController@destroy')->name('izin.destroy');
         });
     });
