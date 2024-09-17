@@ -23,7 +23,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/home', 'UserController@homeSeker')->name('user.homeSeker');
             Route::get('/riwayat', 'UserController@rwAbsensi')->name('user.rwAbsensi');
             Route::get('/informasi', 'UserController@informasi')->name('user.informasi');
-            Route::get('/hapusguru/{inf_guru}', 'UserController@hapusguru')->name('user.hapusguru');
             Route::post('/user/absensi', 'UserController@absensi')->name('user.absensi');
             Route::get('/user/rekap/{user}', 'UserController@rekapabsensi')->name('user.rekapabsensi');
         });
@@ -34,6 +33,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/posttambahinf', 'UserController@posttambahinf')->name('user.posttambahinf');
             Route::get('/editinf/{inf_guru}', 'UserController@editinf')->name('user.editinf');
             Route::post('/posteditinf/{inf_guru}', 'UserController@posteditinf')->name('user.posteditinf');
+            Route::get('/hapusguru/{inf_guru}', 'UserController@hapusguru')->name('user.hapusguru');
         });
     });
 
