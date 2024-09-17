@@ -55,7 +55,11 @@ class GuruController extends Controller
         $inf_tugas = inf_tugas::with('mapel');
 
         if ($request->has(['from', 'to'])) {
-            $inf_tugas->whereBetween('tanggal', [$request->from, $request->to]);
+            $inf_tugas->where(function($query) use ($request) {
+                return $query
+                ->where('tanggal', '>=', $request->from)
+                ->where('tanggal', '<=', $request->to);
+            });
         }
 
         if ($request->filled('kelas')) {

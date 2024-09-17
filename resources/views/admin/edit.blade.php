@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <label class="font-weight-bold">Role</label>
                                         <select name="role" class="form-control">
-                                            @foreach (['sekertaris', 'osis', 'siswa', 'guru', 'satpam', 'admin'] as $role)
+                                            @foreach (['sekertaris', 'osis', 'siswa', 'guru', 'satpam', 'admin', 'guruspy', 'siswaspy'] as $role)
                                                 <option value="{{ $role }}"
                                                     @if ($user->role == $role) selected @endif>
                                                     {{ strtoupper($role) }}

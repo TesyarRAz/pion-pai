@@ -32,8 +32,24 @@ class AppServiceProvider extends ServiceProvider
             return $user->role == 'guru';
         });
 
+        Gate::define('role_guruspy', function ($user) {
+            return $user->role == 'guruspy';
+        });
+
+        Gate::define('panel_guru', function($user) {
+            return $user->role == 'guru' || $user->role == 'guruspy';
+        });
+
         Gate::define('role_sekertaris', function ($user) {
             return $user->role == 'sekertaris';
+        });
+
+        Gate::define('role_siswaspy', function ($user) {
+            return $user->role == 'siswaspy';
+        });
+
+        Gate::define('panel_siswa', function($user) {
+            return $user->role == 'sekertaris' || $user->role == 'siswaspy';
         });
 
         Gate::define('role_osis', function ($user) {

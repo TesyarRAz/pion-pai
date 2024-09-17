@@ -36,6 +36,10 @@ class AuthController extends Controller
                 return redirect()->route('osis.homeOsis')->with('status', 'Selamat datang : ' . $user->name);
             } else if ($user->role == 'satpam') {
                 return redirect()->route('satpam.izin.index')->with('status', 'Selamat datang : ' . $user->name);
+            } else if ($user->role == 'siswaspy') {
+                return redirect()->route('user.guru')->with('status', 'Selamat datang : ' . $user->name);
+            } else if ($user->role == 'guruspy') {
+                return redirect()->route('guru.informasi')->with('status', 'Selamat datang : ' . $user->name);
             }
 
             auth()->logout();

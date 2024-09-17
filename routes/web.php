@@ -18,33 +18,43 @@ Route::get('/', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin')->name('postLogin');
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('can:role_sekertaris')->prefix('user')->group(function () {
-        Route::get('/home', 'UserController@homeSeker')->name('user.homeSeker');
-        Route::get('/riwayat', 'UserController@rwAbsensi')->name('user.rwAbsensi');
-        Route::get('/informasi', 'UserController@informasi')->name('user.informasi');
-        Route::get('/guru', 'UserController@guru')->name('user.guru');
-        Route::get('/hapusguru/{inf_guru}', 'UserController@hapusguru')->name('user.hapusguru');
-        Route::get('/tambahinf', 'UserController@tambahinf')->name('user.tambahinf');
-        Route::post('/posttambahinf', 'UserController@posttambahinf')->name('user.posttambahinf');
-        Route::get('/editinf/{inf_guru}', 'UserController@editinf')->name('user.editinf');
-        Route::post('/posteditinf/{inf_guru}', 'UserController@posteditinf')->name('user.posteditinf');
-        Route::post('/user/absensi', 'UserController@absensi')->name('user.absensi');
-        Route::get('/user/rekap/{user}', 'UserController@rekapabsensi')->name('user.rekapabsensi');
+    Route::middleware('can:panel_siswa')->prefix('user')->group(function () {
+        Route::middleware('can:role_sekertaris')->group(function () {
+            Route::get('/home', 'UserController@homeSeker')->name('user.homeSeker');
+            Route::get('/riwayat', 'UserController@rwAbsensi')->name('user.rwAbsensi');
+            Route::get('/informasi', 'UserController@informasi')->name('user.informasi');
+            Route::get('/hapusguru/{inf_guru}', 'UserController@hapusguru')->name('user.hapusguru');
+            Route::post('/user/absensi', 'UserController@absensi')->name('user.absensi');
+            Route::get('/user/rekap/{user}', 'UserController@rekapabsensi')->name('user.rekapabsensi');
+        });
+
+        Route::middleware('can:role_siswaspy')->group(function () {
+            Route::get('/guru', 'UserController@guru')->name('user.guru');
+            Route::get('/tambahinf', 'UserController@tambahinf')->name('user.tambahinf');
+            Route::post('/posttambahinf', 'UserController@posttambahinf')->name('user.posttambahinf');
+            Route::get('/editinf/{inf_guru}', 'UserController@editinf')->name('user.editinf');
+            Route::post('/posteditinf/{inf_guru}', 'UserController@posteditinf')->name('user.posteditinf');
+        });
     });
 
-    Route::middleware('can:role_guru')->prefix('guru')->name('guru.')->group(function () {
-        Route::get('/homeguru', 'GuruController@homeguru')->name('homeguru');
-        Route::get('/guru', 'GuruController@guru')->name('guru');
-        Route::get('/tambahguru', 'GuruController@tambahguru')->name('tambahguru');
-        Route::post('/posttambahguru', 'GuruController@posttambahguru')->name('posttambahguru');
-        Route::get('/hapusguru/{inf_tugas}', 'GuruController@hapusguru')->name('hapusguru');
-        Route::get('/informasi', 'GuruController@informasi')->name('informasi');
+    Route::middleware('can:panel_guru')->prefix('guru')->name('guru.')->group(function () {
+        Route::middleware('can:role_guru')->group(function () {
+            Route::get('/homeguru', 'GuruController@homeguru')->name('homeguru');
+            Route::get('/guru', 'GuruController@guru')->name('guru');
+            Route::get('/tambahguru', 'GuruController@tambahguru')->name('tambahguru');
+            Route::post('/posttambahguru', 'GuruController@posttambahguru')->name('posttambahguru');
+            Route::get('/hapusguru/{inf_tugas}', 'GuruController@hapusguru')->name('hapusguru');
 
-        Route::namespace('Guru')->group(function() {        
-            Route::get('/izin', 'IzinController@index')->name('izin.index');
-            Route::post('/izin', 'IzinController@store')->name('izin.store');
-            Route::put('/izin/{izin}', 'IzinController@update')->name('izin.update');
-            Route::get('/izin/{izin}/delete', 'IzinController@destroy')->name('izin.destroy');
+            Route::namespace('Guru')->group(function () {
+                Route::get('/izin', 'IzinController@index')->name('izin.index');
+                Route::post('/izin', 'IzinController@store')->name('izin.store');
+                Route::put('/izin/{izin}', 'IzinController@update')->name('izin.update');
+                Route::get('/izin/{izin}/delete', 'IzinController@destroy')->name('izin.destroy');
+            });
+        });
+
+        Route::middleware('can:role_guruspy')->group(function () {
+            Route::get('/informasi', 'GuruController@informasi')->name('informasi');
         });
     });
 

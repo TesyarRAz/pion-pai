@@ -79,11 +79,11 @@ class UserController extends Controller
             'mapel_id'=>'required',
             'keterangan'=>'required',
             'jp'=>'required',
+            'tanggal' => 'required',
             'status_masuk' => 'bail',
         ]);
         $data['status_masuk'] = $request->filled('status_masuk') ? 'masuk' : 'tidak';
         $data['kelas'] = auth()->user()->kelas;
-        $data['tanggal'] = now();
         $data['user_id'] = auth()->id();
         inf_guru::create($data);
         return redirect()->route('user.guru')->with('status', 'Berhasil tambah Informasi Pembelajaran');
@@ -110,9 +110,9 @@ class UserController extends Controller
             'mapel_id'=>'required',
             'keterangan'=>'required',
             'jp'=>'required',
+            'tanggal' => 'required',
         ]);
         $data['kelas'] = auth()->user()->kelas;
-        $data['tanggal'] = now();
         $data['user_id'] = auth()->id();
         $inf_guru->update($data);
         return redirect()->route('user.guru')->with('status', 'Berhasil edit Informasi Pembelajaran');

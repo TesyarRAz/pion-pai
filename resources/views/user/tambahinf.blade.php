@@ -54,6 +54,13 @@
                                 </div>
                             </div>
 
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Tanggal</label>
+                                    <input type="date" name="tanggal" class="form-control" required>
+                                </div>
+                            </div>
+
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="checkStatusMasuk" name="status_masuk">
                                 <label class="form-check-label" for="checkStatusMasuk" checked>Masuk</label>
