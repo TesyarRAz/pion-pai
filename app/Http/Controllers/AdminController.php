@@ -182,7 +182,7 @@ class AdminController extends Controller
                 User::create([
                     'name' => $d['name'],
                     'alamat' => $d['opsional']['alamat'] ?? '',
-                    'role' => in_array($d['opsional']['role'], ['siswa', 'sekertaris', 'guru']) ? $d['opsional']['role'] : 'siswa',
+                    'role' => $d['opsional']['role'] ?? 'siswa',
                     'kelas' => $d['kelas'],
                     'nis' => $d['nis'],
                     'username' => $d['opsional']['username'] ?? '',
