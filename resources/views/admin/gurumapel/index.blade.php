@@ -48,13 +48,13 @@
                                                 <i class="fas fa-fw fa-pencil-alt"></i>
                                                 Edit
                                             </a>
-                                            <button onclick="$('#form-delete-{{$id}}').submit()" class="btn btn-sm btn-outline-danger">
+                                            <button onclick="$('#form-delete-{{$item->id}}').submit()" class="btn btn-sm btn-outline-danger">
                                                 <i class="fas fa-fw fa-trash-alt"></i>
                                                 Hapus
                                             </button>
 
                                             <form action="{{ route('admin.gurumapel.destroy', $item->id) }}"
-                                                id="form-delete-{{ $id }}" class="d-none" method="POST" onsubmit="return confirm('Yakin ingin hapus')">
+                                                id="form-delete-{{ $item->id }}" class="d-none" method="POST" onsubmit="return confirm('Yakin ingin hapus')">
                                                 @csrf
                                                 @method('DELETE')
 

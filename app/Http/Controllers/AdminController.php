@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -186,7 +187,7 @@ class AdminController extends Controller
                     'kelas' => $d['kelas'],
                     'nis' => $d['nis'],
                     'username' => $d['opsional']['username'] ?? '',
-                    'password' => $d['opsional']['password'] ?? '',
+                    'password' => $d['opsional']['password'] ? Hash::make($d['opsional']['password']) : '',
                 ]);
             }
         });
