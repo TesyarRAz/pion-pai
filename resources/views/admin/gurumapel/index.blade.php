@@ -22,7 +22,9 @@
                     <div class="">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <a href="{{ route('admin.gurumapel.create') }}" class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-fw fa-plus"></i>Isi Data</a>
+                                <a href="{{ route('admin.gurumapel.create') }}"
+                                    class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-fw fa-plus"></i>Isi
+                                    Data</a>
                             </div>
                         </div>
                         <table id="myTable" class="table" style="width:100%">
@@ -36,22 +38,29 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nip }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.gurumapel.edit',$item->id) }}" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-fw fa-pencil-alt"></i>
-                                            Edit
-                                        </a>
-                                        <a href="{{ route('admin.gurumapel.destroy',$item->id) }}" class="btn btn-sm btn-outline-danger"
-                                            onclick="return confirm('Yakin ingin hapus')">
-                                            <i class="fas fa-fw fa-trash-alt"></i>
-                                            Hapus
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nip }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.gurumapel.edit', $item->id) }}"
+                                                class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-fw fa-pencil-alt"></i>
+                                                Edit
+                                            </a>
+                                            <button onclick="$('#form-delete-{{$id}}').submit()" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-fw fa-trash-alt"></i>
+                                                Hapus
+                                            </button>
+
+                                            <form action="{{ route('admin.gurumapel.destroy', $item->id) }}"
+                                                id="form-delete-{{ $id }}" class="d-none" method="POST" onsubmit="return confirm('Yakin ingin hapus')">
+                                                @csrf
+                                                @method('DELETE')
+
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
