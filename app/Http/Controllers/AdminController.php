@@ -230,7 +230,7 @@ class AdminController extends Controller
                     return [
                         ['Nama Guru', 'Mapel', 'Tanggal', 'Kelas', 'JP', 'Keterangan'],
                         ...($this->inf_guru->map(fn ($e) => [
-                            $e->user->name,
+                            $e->name,
                             $e->mapel->nama,
                             $e->tanggal,
                             $e->kelas,
