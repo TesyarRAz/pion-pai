@@ -204,7 +204,7 @@ class AdminController extends Controller
             ]);
         }
 
-        $inf_guru = inf_guru::with('mapel');
+        $inf_guru = inf_guru::select('inf_gurus.*')->with('mapel', 'user');
 
         if ($request->has(['from', 'to'])) {
             $inf_guru->whereBetween('tanggal', [$request->from, $request->to]);
